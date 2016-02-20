@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Administrador de Tareas</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="javascripts/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="scripts/appAngular.js"></script>
+        <script type="text/javascript" src="scripts/controllers/home.js"></script>
+        <script type="text/javascript" src="scripts/controllers/users.js"></script>
+    </head>
+<body ng-app="analyticApp">
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" ng-controller="NavList">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li ng-class="navClass('inicio')">
+                    <a href="#/inicio">
+                    	<i class="fa fa-dashboard"></i>
+                    	<span>inicio</span>
+                    </a>
+                </li>
+                <li ng-class="navClass('users')">
+                    <a href="#/users">
+                    	<i class="fa fa-home"></i>
+                    	<span>Usuarios</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer col-xs-4 col-md-4 col-lg-4">
+            	<i class="fa fa-arrow-left col-xs-offset-5 col-md-offset-5 col-lg-offset-5"></i>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ui-view></ui-view>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+</body>
 </html>
