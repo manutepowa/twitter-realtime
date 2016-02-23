@@ -8,14 +8,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
 		<script type="text/javascript" src="javascripts/main.js"></script>
         <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+
         <script type="text/javascript" src="scripts/appAngular.js"></script>
         <script type="text/javascript" src="scripts/controllers/home.js"></script>
         <script type="text/javascript" src="scripts/controllers/users.js"></script>
+        <script type="text/javascript" src="scripts/controllers/stream.js"></script>
     </head>
 <body ng-app="analyticApp">
     <div id="wrapper">
@@ -25,18 +28,24 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Start Bootstrap
+                        M3Graph
                     </a>
                 </li>
                 <li ng-class="navClass('inicio')">
                     <a href="#/inicio">
-                    	<i class="fa fa-dashboard"></i>
+                    	<i class="fa fa-home"></i>
                     	<span>inicio</span>
+                    </a>
+                </li>
+                <li ng-class="navClass('stream')">
+                    <a href="#/stream">
+                    	<i class="fa fa-sticky-note"></i>
+                    	<span>Stream</span>
                     </a>
                 </li>
                 <li ng-class="navClass('users')">
                     <a href="#/users">
-                    	<i class="fa fa-home"></i>
+                    	<i class="fa fa-user"></i>
                     	<span>Usuarios</span>
                     </a>
                 </li>
@@ -46,7 +55,20 @@
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
-
+       	<div class="topBar col-lg-12 col-md-12">
+       		<div class="container-fluid">
+                <div class="row">
+                	<div class="col-lg-6 col-md-6">
+                		<span>Top Bar</span>
+                	</div>
+                	<div class="col-lg-6 col-md-6">
+                		<div class="col-lg-1 col-md-1 pull-right text-center"><i class="fa fa-sign-out"></i></div>
+                		<div class="col-lg-1 col-md-1 pull-right text-center"><i class="fa fa-plus-square"></i></div>
+                	</div>
+                </div>
+            </div>
+       		
+       	</div>
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">

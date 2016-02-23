@@ -15,6 +15,11 @@ angular.module("analyticApp",[
 			templateUrl: 	"/views/users.html",
 			controller: 	"usersCrtl"  
 		})
+		.state('stream', {
+			url: '/stream',
+			templateUrl: 	"/views/stream.html",
+			controller: 	"streamCrtl"  
+		})
 })
 .controller("NavList", function ($scope, $location){
 	$scope.navClass = function(page){

@@ -9,7 +9,15 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-    
+
+//Preparando el socket
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+io.on('connection', function(socket){
+  socket.emit('new', {mensaje: "holaaaaasd"});
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

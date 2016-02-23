@@ -13,6 +13,7 @@
 body{
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 12pt; 
+    background: #F9F9F9;
 }
 #wrapper {
     padding-left: 0;
@@ -35,10 +36,10 @@ body{
     margin-left: -220px;
     overflow-y: auto;
     background: #2b333d;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -106,8 +107,17 @@ body{
     height: 65px;
     font-size: 18px;
     line-height: 60px;
+    background: #333C47;
 }
-
+.topBar{
+    /*width: 100%;*/
+    /*position: absolute;*/
+    height: 65px;
+    line-height: 60px;
+    font-size: 13pt;
+    border-bottom: 1px solid #efeff1;
+    color: #4c4e54;
+}
 .sidebar-nav > .sidebar-brand a {
     color: #C5D0DE;
 }
