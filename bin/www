@@ -20,6 +20,20 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server);
+var counter;
+
+io.on('connection', function(socket){
+
+  console.log('Un usuario se ha conectado: ');
+  io.clients(function(error, clients){
+    if (error) throw error;
+    counter = clients;
+    console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+  });
+
+  socket.emit('new', {'numero': counter})
+});
 
 /**
  * Listen on provided port, on all network interfaces.
