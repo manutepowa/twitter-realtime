@@ -1,5 +1,6 @@
 angular.module("analyticApp",[
-	'ui.router'
+	'ui.router',
+	'btford.socket-io'
 ])
 .config(function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise("/inicio");
