@@ -1,27 +1,30 @@
 angular.module("analyticApp")
 .factory('mySocket', function (socketFactory) {
-  var myIoSocket = io.connect('http://localhost:3000');
+  var myIoSocket = io.connect('http://localhost:3000',
+                              {'forceNew': true});
  
   mySocket = socketFactory({
     ioSocket: myIoSocket
   });
- 
+  mySocket.emit('NewPlayer');
   return mySocket;
 })
 .controller("streamCrtl", function($scope,mySocket){
 	$scope.bienvenida = "Stream";
-	$scope.socket = mySocket;
+	// $scope.conexiones = 0;
 
-	$scope.$on('new', function(data){
-      	  console.log(data);
-      	  $scope.conexiones = data.lenght();
-      	  // // $scope.$apply();
+	mySocket.on('nPlayers', function(data){
+      	  console.log(data.numero);
+      	  $scope.conexiones = data.numero;
+
+          // mySocket.disconnect();
+      	  // $scope.conexiones.$apply();
       });
 
 
-    $scope.$on('$destroy', function () {
-      mySocket.disconnect();
-    });
+    // $scope.$on('$destroy', function () {
+    //   mySocket.disconnect();
+    // });
 	// $scope.conexiones = 0;
 	//  var socket = io.connect('http://localhost:3000');
 	 

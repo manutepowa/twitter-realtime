@@ -3,7 +3,7 @@
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'start' ]
 2 info using npm@2.14.12
-3 info using node@v4.3.1
+3 info using node@v4.2.5
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info prestart AnalyticsTwitter@0.0.0
 6 info start AnalyticsTwitter@0.0.0
@@ -20,10 +20,10 @@
 9 verbose stack     at maybeClose (internal/child_process.js:821:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 10 verbose pkgid AnalyticsTwitter@0.0.0
-11 verbose cwd C:\Users\mtercero\Desktop\Desarrollos\AnaliticaTwitter
-12 error Windows_NT 6.1.7601
+11 verbose cwd C:\Users\W10\Desktop\AnalyticsTwitter
+12 error Windows_NT 10.0.10586
 13 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
-14 error node v4.3.1
+14 error node v4.2.5
 15 error npm  v2.14.12
 16 error code ELIFECYCLE
 17 error AnalyticsTwitter@0.0.0 start: `node ./bin/www`
