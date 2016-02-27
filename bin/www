@@ -21,23 +21,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-var online = 0;
-
-io.on('connection', function (socket) {
-    socket.on('NewPlayer', function(data){
-      online += 1;
-      socket.broadcast.emit('nPlayers',{'numero': online});
-      socket.emit('nPlayers',{'numero': online});
-      console.log('Online players : ' + online);
-    });
-
-    socket.on('disconnect', function () {
-
-      socket.emit('disconnected');
-      online = online - 1;
-      console.log('Desconectado');
-    });
-});
+require('../streaming/tweetSocket')(io);
 
 /**
  * Listen on provided port, on all network interfaces.

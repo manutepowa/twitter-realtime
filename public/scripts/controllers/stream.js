@@ -11,27 +11,28 @@ angular.module("analyticApp")
 })
 .controller("streamCrtl", function($scope,mySocket){
 	$scope.bienvenida = "Stream";
-	// $scope.conexiones = 0;
+	$scope.data = [];
+    
+ 
+  $scope.emitir = function(){
+    console.log($scope.text);
+    mySocket.emit('start', {'parametro': $scope.text});
+  }
 
-	mySocket.on('nPlayers', function(data){
-      	  console.log(data.numero);
-      	  $scope.conexiones = data.numero;
+  mySocket.on('twet', function(data){
+       console.log(data);
+  
+       $scope.data.push({
+          id: data.user.screen_name,
+          id_str: data.id_str,
+          t: data.text,
+          image: data.user.profile_image_url
+       });
+  });
 
-          // mySocket.disconnect();
-      	  // $scope.conexiones.$apply();
-      });
-
-
-    // $scope.$on('$destroy', function () {
-    //   mySocket.disconnect();
-    // });
-	// $scope.conexiones = 0;
-	//  var socket = io.connect('http://localhost:3000');
-	 
-
-	//   socket.on('new', function(data){
- //      	  console.log(data);
- //      	  $scope.conexiones = data.lenght();
- //      	  // $scope.$apply();
- //      });
+  $scope.detener = function(){
+    mySocket.emit('disconnect');
+    mySocket.disconnect(true);
+  }
 });
+

@@ -17,10 +17,10 @@ body{
 }
 #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 #wrapper.toggled {
@@ -112,6 +112,7 @@ body{
 .topBar{
     /*width: 100%;*/
     /*position: absolute;*/
+    z-index: 1002;
     height: 65px;
     line-height: 60px;
     font-size: 13pt;
@@ -140,6 +141,31 @@ body{
     cursor: pointer;
 }
 
+
+.box{
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    background: #EEEEEE;
+    box-shadow: 1px 1px 3px #888888;
+    height: 150px;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.box-text{
+    font-size: 11pt;
+}
+
+input.form-control{
+    margin-bottom: 2px;
+}
+
+/**
+ * [media description]
+ * @param  {[type]} min-width:768px [description]
+ * @return {[type]}                 [description]
+ */
 @media(min-width:768px) {
     #wrapper {
         padding-left: 220px;

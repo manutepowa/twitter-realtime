@@ -1,2 +1,35 @@
-<h3>{{bienvenida}}</h3>
-<p>Numero de conexiones <span>{{conexiones}}</span></p>
+<br>
+<div class="col-lg-12">
+	<div class="row">
+		<div class="col-lg-12">
+			<form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
+				<div class="form-group">
+				    <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
+				    <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
+				    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+				    <button ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<br>
+	<div class="row">
+		<div class="col-lg-4" ng-repeat="d in data">
+			<div class="col-lg-11 panel panel-default box">
+				<div class="media">
+				  <div class="media-left">
+				      <img class="media-object" ng-src="{{d.image}}" alt="..."><br>
+				      <a href="https://twitter.com/{{d.id}}/status/{{d.id_str}}" class="btn btn-info" target="_blank">IR</a>
+				  </div>
+				  <div class="media-body box-text">
+				    <h4 class="media-heading"><strong>{{d.id}}</strong></h4>
+				    	{{d.t}} 
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

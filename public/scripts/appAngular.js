@@ -11,9 +11,9 @@ angular.module("analyticApp",[
 			templateUrl: 	"/views/home.html",
 			controller: 	"homeCrtl"  
 		})
-		.state('users', {
-			url: '/users',
-			templateUrl: 	"/views/users.html",
+		.state('usuarios', {
+			url: '/usuarios',
+			templateUrl: 	"/views/usuarios.html",
 			controller: 	"usersCrtl"  
 		})
 		.state('stream', {
