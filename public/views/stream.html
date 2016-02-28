@@ -7,8 +7,9 @@
 				    <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
 				    <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
 				    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
-				    <button ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</button>
+				    <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
 				</div>
+
 			</form>
 		</div>
 	</div>
@@ -18,6 +19,7 @@
 	<div class="row">
 		<div class="col-lg-4" ng-repeat="d in data">
 			<div class="col-lg-11 panel panel-default box">
+			<span class="localizacion">{{d.zona}}</span>
 				<div class="media">
 				  <div class="media-left">
 				      <img class="media-object" ng-src="{{d.image}}" alt="..."><br>

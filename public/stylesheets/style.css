@@ -161,6 +161,13 @@ input.form-control{
     margin-bottom: 2px;
 }
 
+.localizacion{
+    position: absolute;
+    top:0;
+    right:0;
+    /*padding: 4px;*/
+}
+
 /**
  * [media description]
  * @param  {[type]} min-width:768px [description]

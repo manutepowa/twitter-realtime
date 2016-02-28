@@ -26,13 +26,14 @@ angular.module("analyticApp")
           id: data.user.screen_name,
           id_str: data.id_str,
           t: data.text,
-          image: data.user.profile_image_url
+          image: data.user.profile_image_url,
+          zona: data.user.time_zone
        });
   });
 
   $scope.detener = function(){
     mySocket.emit('disconnect');
-    mySocket.disconnect(true);
+    mySocket.disconnect();
   }
 });
 
