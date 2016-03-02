@@ -2,7 +2,7 @@ angular.module("analyticApp")
 .factory('mySocket', function (socketFactory) {
   // var myIoSocket = io.connect('http://localhost:8080',
   //                             {'forceNew': true});
- var myIoSocket = io.connect();
+ var myIoSocket = io.connect({'forceNew': true});
   mySocket = socketFactory({
     ioSocket: myIoSocket
   });
@@ -17,9 +17,9 @@ angular.module("analyticApp")
   $scope.emitir = function(){
     console.log($scope.text);
     mySocket.emit('start', {'parametro': $scope.text});
-  }
 
-  mySocket.on('twet', function(data){
+
+    mySocket.on('twet', function(data){
        console.log(data);
   
        $scope.data.push({
@@ -29,7 +29,8 @@ angular.module("analyticApp")
           image: data.user.profile_image_url,
           zona: data.user.time_zone
        });
-  });
+    });
+  }
 
   $scope.detener = function(){
     mySocket.emit('disconnect');
