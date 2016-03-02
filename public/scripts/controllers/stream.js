@@ -1,8 +1,8 @@
 angular.module("analyticApp")
 .factory('mySocket', function (socketFactory) {
-  var myIoSocket = io.connect('http://localhost:3000',
-                              {'forceNew': true});
- 
+  // var myIoSocket = io.connect('http://localhost:8080',
+  //                             {'forceNew': true});
+ var myIoSocket = io.connect();
   mySocket = socketFactory({
     ioSocket: myIoSocket
   });
@@ -10,8 +10,8 @@ angular.module("analyticApp")
   return mySocket;
 })
 .controller("streamCrtl", function($scope,mySocket){
-	$scope.bienvenida = "Stream";
-	$scope.data = [];
+  $scope.bienvenida = "Stream";
+  $scope.data = [];
     
  
   $scope.emitir = function(){
