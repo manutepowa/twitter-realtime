@@ -1,0 +1,16 @@
+<div class="col-lg-12">
+	<div class="row">
+		<div class="col-lg-12">
+			<form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
+				<div class="form-group">
+				    <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
+				    <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
+				    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+				    <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<mapbox callback="callback"></mapbox>

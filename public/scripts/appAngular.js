@@ -21,6 +21,11 @@ angular.module("analyticApp",[
 			templateUrl: 	"/views/stream.html",
 			controller: 	"streamCrtl"  
 		})
+		.state('mapa', {
+			url: '/mapa',
+			templateUrl: 	"/views/mapa.html",
+			controller: 	"mapaCrtl"  
+		})
 })
 .controller("NavList", function ($scope, $location){
 	$scope.navClass = function(page){

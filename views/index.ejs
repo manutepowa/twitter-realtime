@@ -9,6 +9,8 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+        <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
+        <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
 		<script type="text/javascript" src="javascripts/main.js"></script>
         <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 
@@ -19,6 +21,9 @@
         <script type="text/javascript" src="scripts/controllers/home.js"></script>
         <script type="text/javascript" src="scripts/controllers/usuarios.js"></script>
         <script type="text/javascript" src="scripts/controllers/stream.js"></script>
+        <script type="text/javascript" src="scripts/controllers/mapa.js"></script>
+
+        
     </head>
 <body ng-app="analyticApp">
     <div id="wrapper">
@@ -41,6 +46,12 @@
                     <a href="#/stream">
                     	<i class="fa fa-sticky-note"></i>
                     	<span>Stream</span>
+                    </a>
+                </li>
+                <li ng-class="navClass('mapa')">
+                    <a href="#/mapa">
+                        <i class="fa fa-map-marker"></i>
+                        <span>Mapa</span>
                     </a>
                 </li>
                 <li ng-class="navClass('usuarios')">

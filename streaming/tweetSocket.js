@@ -13,10 +13,10 @@ module.exports = function(io) {
         console.log('Cliente conectado!');
         socket.on('start', function(data) {
 
-            var stream = t.stream('statuses/filter', { 'track': data.parametro });
+            var stream = t.stream('statuses/filter', {'locations':'-180,-90,180,90'});
             stream.on('tweet', function(tweet) {
 
-                console.log(tweet.place);
+                console.log(tweet.coordinates);
                 // console.log(tweet);
                 socket.emit('twet', tweet);
             });
