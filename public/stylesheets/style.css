@@ -172,7 +172,11 @@ input.form-control{
  * Mapa JS
  */
 
-
+.formMap{
+    position: absolute;
+    z-index: 1100;
+    right: 0;
+}
 /**
  * End Mapa JS
  */

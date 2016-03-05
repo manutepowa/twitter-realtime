@@ -19,13 +19,16 @@ angular.module("analyticApp")
                 },
                 template: '<div></div>',
                 link: function(scope, element, attributes) {
-                    // console.log(element.parent().parent().parent());
-
+                    console.log(element.parent().parent());
+					// element.parent().parent().css({
+					// 	"position": "relative" 
+					// });
                     element.css({
                         "width": "100%",
-                        "height": "500px",
-                        "marginTop": "150px"
-                            // "height": "500px"
+                        "min-height": ($(window).height() - 70)+'px',
+                        "z-index":"100",
+                        "left":"0",
+                     	"position": "absolute"   
                     });
 
 
@@ -37,8 +40,9 @@ angular.module("analyticApp")
         }
     ])
     .controller("mapaCrtl", function($scope, mySocket) {
-		$scope.geoson = [];
-        
+        $scope.geoson = [];
+
+
 
         $scope.detener = function() {
             mySocket.emit('disconnect');
@@ -49,79 +53,174 @@ angular.module("analyticApp")
 
         $scope.callback = function(map) {
             map.setView([0, 0], 2);
-            
+            // console.log(map);
+            // L.mapbox.featureLayer($scope.geoson).addTo(map);
 
             $scope.emitir = function() {
-            console.log($scope.text);
-            mySocket.emit('start', { 'parametro': $scope.text });
+                console.log($scope.text);
+                mySocket.emit('start', { 'parametro': $scope.text });
 
 
-            mySocket.on('twet', function(data) {
-                
+                mySocket.on('twet', function(data) {
 
-                // $scope.data.push({
-                //     id: data.user.screen_name,
-                //     id_str: data.id_str,
-                //     t: data.text,
-                //     image: data.user.profile_image_url,
-                //     zona: data.user.time_zone
-                // });
-                if (data.coordinates !== null){
-                	console.log($scope.geoson);
-	                $scope.geoson.push({
-	                	type: "Feature",
-				        geometry: {
-				            type: "Point",
-				            coordinates: [data.coordinates.coordinates[0], data.coordinates.coordinates[1]]
-				        },
-				        properties: {
-				          title: data.user.screen_name,
-				          'marker-size': 'small',
-				          'marker-symbol': 'water',
-				          'marker-color': '#000'
-				        }
-	                });
+                    if (data.coordinates !== null) {
 
-	                L.mapbox.featureLayer($scope.geoson).addTo(map);
-            	}
+                        L.marker([data.coordinates.coordinates[1], data.coordinates.coordinates[0]], {
+                        	title: data.user.screen_name,
+                            icon: L.mapbox.marker.icon({
+                                'marker-size': 'small',
+                                'marker-symbol': 'water',
+                                'marker-color': '#000'
+                            })
+                        }).addTo(map);
+                    }
 
-                // L.mapbox.addLayer($scope.geoson);
-            });
-        }
+
+                });
+            }
         };
 
 
 
-
-
-
-
-        //      $scope.geoson = [
-        //      	{
-        //   "type": "Feature",
-        //   "geometry": {
-        //     "type": "Point",
-        //     "coordinates": [125.6, 10.1]
-        //   },
-        //   "properties": {
-        //     "title": "Dinagat Islands",
-        //     'marker-size': 'small',
-        //              'marker-symbol': 'water',
-        //              'marker-color': '#000'
-        //   }
-        // },
-        // {
-        // "type": "Feature",
-        //   "geometry": {
-        //     "type": "Point",
-        //     "coordinates": [-77.031952,38.913184]
-        //   },
-        //   "properties": {
-        //     "title": "Otro",
-        //     'marker-size': 'small',
-        //              'marker-symbol': 'water',
-        //              'marker-color': '#000'
-        //   }
-        // }
-        //      ];
+        //Ejemplo perfecto de puntos
+        //  $scope.geoson = [{
+        //     "type": "FeatureCollection",
+        //     "features": [{
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [-30.729308780282736,
+        //                 42.02170813456178
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 20.53041343577206, -46.55280112288892
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [-55.08027020841837, -83.73101456556469]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 160.01656299456954, -81.5248491615057
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 152.5762549135834, -39.44189835805446
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 88.19278900511563, -23.338483767583966
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 142.00911624357104, -81.59539021085948
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 129.67717356048524, -35.91478097252548
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [-163.74210454523563, -44.28381075616926]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }, {
+        //         "type": "Feature",
+        //         "geometry": {
+        //             "type": "Point",
+        //             "coordinates": [
+        //                 89.60865355096757, -40.66534659359604
+        //             ]
+        //         },
+        //         "properties": {
+        //             title: 'hola',
+        //             'marker-size': 'small',
+        //             'marker-symbol': 'water',
+        //             'marker-color': '#000'
+        //         }
+        //     }]
+        // }];
     });
