@@ -24,11 +24,13 @@ angular.module("analyticApp")
 					// 	"position": "relative" 
 					// });
                     element.css({
+                    	"position": "absolute",
                         "width": "100%",
                         "min-height": ($(window).height() - 70)+'px',
                         "z-index":"100",
                         "left":"0",
-                     	"position": "absolute"   
+                        "right":"0",
+                        "margin": "0 auto"
                     });
 
 

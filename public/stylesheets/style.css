@@ -173,9 +173,15 @@ input.form-control{
  */
 
 .formMap{
+    background: #333C47;
     position: absolute;
     z-index: 1100;
     right: 0;
+    border: none;
+}
+
+.formMap .panel-body{
+    padding: 8px 0;
 }
 /**
  * End Mapa JS
