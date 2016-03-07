@@ -1,4 +1,5 @@
 angular.module("analyticApp",[
+	'chart.js',
 	'ui.router',
 	'btford.socket-io'
 ])
@@ -25,6 +26,11 @@ angular.module("analyticApp",[
 			url: '/mapa',
 			templateUrl: 	"/views/mapa.html",
 			controller: 	"mapaCrtl"  
+		})
+		.state('Graficos', {
+			url: '/graficos',
+			templateUrl: 	"/views/graficos.html",
+			controller: 	"graficosCrtl"  
 		})
 })
 .controller("NavList", function ($scope, $location){

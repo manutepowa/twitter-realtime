@@ -60,7 +60,7 @@ angular.module("analyticApp")
 
             $scope.emitir = function() {
                 console.log($scope.text);
-                mySocket.emit('start', { 'parametro': $scope.text });
+                mySocket.emit('startMapa');
 
 
                 mySocket.on('twet', function(data) {
