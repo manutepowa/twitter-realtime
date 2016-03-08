@@ -19,12 +19,14 @@ module.exports = function(io) {
 
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-
-                console.log(tweet.coordinates);
-                // console.log(tweet);
+                console.log(tweet);
                 socket.emit('twet', tweet);
             });
 
+            socket.on('disconnect', function() {
+                stream.stop();
+                console.log('Desconectado!!!');
+            });
             stream.on('limit', function(limitMessage) {
                 return console.log(limitMessage);
             });
