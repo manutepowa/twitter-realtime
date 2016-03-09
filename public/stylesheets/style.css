@@ -1,4 +1,18 @@
 /**
+ * Mi Helper colors
+ */
+.myWarning{
+    background-color: #F2DEDE;
+}
+.myInfo{
+    background-color: #d9edf7;
+}
+
+/*
+ */
+
+
+/**
  * Modificaciones del framework bootstrap
  */
 .container-fluid{

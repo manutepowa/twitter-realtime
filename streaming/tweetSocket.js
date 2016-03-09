@@ -72,11 +72,12 @@ module.exports = function(io) {
             var total_1 = 0;
             var total_2 = 0;
             var total = 0;
-            var parametro_1 = "iphone";
-            var parametro_2 = "galaxy";
+            var parametro_1 = data.parametro1;
+            var parametro_2 = data.parametro2;
             var stream = t.stream('statuses/filter', { 'track': [parametro_1, parametro_2] });
             stream.on('tweet', function(tweet) {
-
+                
+                // console.log(err);
                 if (tweet.text) {
                     var text = tweet.text.toLowerCase();
                     // console.log(text);
@@ -84,19 +85,21 @@ module.exports = function(io) {
                         total_1++;
                         total++;
                     }
-                    if (text.indexOf(parametro_2) != -1) {
+                    else if (text.indexOf(parametro_2) != -1) {
                         total_2++;
                         total++;
+                    }
+                    else
+                    {
+                        // console.log(tweet.text);
+                        socket.emit('nulo');
                     }
 
                     socket.emit('porcentajes',{
                         p1: (total_1/total)*100,
-                        p2: (total_2/total)*100,
-                        param1: parametro_1,
-                        param2: parametro_2
+                        p2: (total_2/total)*100
                     });
                 }
-
 
                 // console.log(tweet);
                 // socket.emit('twet', tweet);
