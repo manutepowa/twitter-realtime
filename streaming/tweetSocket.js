@@ -91,13 +91,15 @@ module.exports = function(io) {
                     }
                     else
                     {
-                        // console.log(tweet.text);
+                        // console.log('Total_1: '+total_1+' - Total_2 :'+total_2+' - Total: '+total);
                         socket.emit('nulo');
                     }
 
                     socket.emit('porcentajes',{
                         p1: (total_1/total)*100,
-                        p2: (total_2/total)*100
+                        p2: (total_2/total)*100,
+                        track1: total_1,
+                        track2: total_2
                     });
                 }
 

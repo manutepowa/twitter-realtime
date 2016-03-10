@@ -10,7 +10,7 @@
                 <form ng-submit="emitir()">
                     <div class="form-group">
                         <input type="text" ng-model="text1" placeholder="Parámetro 1 (apple)" class="form-control" required>
-                        <input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required>
+                        <input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required><br>
                         <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
                         <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
                     </div>
@@ -23,14 +23,22 @@
     </div>
     <div class="col-lg-3">
         <ul class="list-group">
-            <li class="list-group-item myInfo">
+            <li class="list-group-item myInfo" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
                 <span class="badge">{{cantidad}}</span> <strong>Total</strong>
             </li>
-            <li class="list-group-item myWarning">
+            <li class="list-group-item myWarning" data-toggle="tooltip" data-placement="left" title="No contienen track">
                 <span class="badge">{{nulos}}</span> <strong>Nulos</strong>
             </li>
-            <li class="list-group-item myDanger">
+            <li class="list-group-item myDanger" data-toggle="tooltip" data-placement="left" title="No recibidos por la red">
                 <span class="badge">{{perdidos}}</span> <strong>Perdidos</strong>
+            </li>
+        </ul>
+        <ul class="list-group" ng-hide="cantidad === 0">
+            <li class="list-group-item myTrack">
+                <span class="badge">{{track1}}</span> <strong>{{text1}}</strong>
+            </li>
+            <li class="list-group-item myTrack">
+                <span class="badge">{{track2}}</span> <strong>{{text2}}</strong>
             </li>
         </ul>
     </div>

@@ -201,6 +201,11 @@ input.form-control{
 .formMap .panel-body{
     padding: 8px 0;
 }
+
+.myTrack{
+    background-color: #333C47;
+    color: #C5D0DE;
+}
 /**
  * End Mapa JS
  */

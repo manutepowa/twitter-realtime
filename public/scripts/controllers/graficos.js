@@ -4,6 +4,10 @@ angular.module("analyticApp")
         $scope.cantidad = 0;
         $scope.nulos = 0;
         $scope.perdidos = 0;
+        $scope.track1 = 0;
+        $scope.track2 = 0;
+
+
         $scope.data = {
             "data": [[0,0]],
             "labels": ["Track 1","Track 2"],
@@ -37,9 +41,12 @@ angular.module("analyticApp")
 
             mySocket.on('porcentajes', function(data) {
                 // console.log(data);
+                
                 $scope.data.data[0][0] = data.p1;
                 $scope.data.data[0][1] = data.p2;
-                $scope.cantidad++;
+                $scope.track1 = data.track1;
+                $scope.track2 = data.track2;
+                $scope.cantidad = $scope.track1 + $scope.track2;
             });
         }
         $scope.detener = function() {
@@ -60,4 +67,10 @@ angular.module("analyticApp")
 
         //     $scope.data.data[0][2] = 23;
         // });
+        
+        /**
+         * Inicializacion de tooltip
+         * Aqui no se debería hacer
+         */
+        $('[data-toggle="tooltip"]').tooltip();
     });
