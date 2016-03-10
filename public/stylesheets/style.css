@@ -2,10 +2,14 @@
  * Mi Helper colors
  */
 .myWarning{
-    background-color: #F2DEDE;
+    background-color:#fcf8e3;
 }
 .myInfo{
     background-color: #d9edf7;
+}
+
+.myDanger{
+    background-color:#f2dede;
 }
 
 /*

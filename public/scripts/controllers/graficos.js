@@ -3,6 +3,7 @@ angular.module("analyticApp")
         $scope.mensaje = "Comparacion de tracks";
         $scope.cantidad = 0;
         $scope.nulos = 0;
+        $scope.perdidos = 0;
         $scope.data = {
             "data": [[0,0]],
             "labels": ["Track 1","Track 2"],
@@ -48,7 +49,11 @@ angular.module("analyticApp")
 
         mySocket.on('nulo', function(){
             $scope.nulos++;
-        })
+        });
+
+        mySocket.on('limitacion', function(data){
+            $scope.perdidos += data.perdidos;
+        });
 
         // $scope.$apply(function(){
         //     console.log($scope.data.colours[0].fillColor);

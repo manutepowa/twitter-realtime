@@ -112,6 +112,7 @@ module.exports = function(io) {
             });
 
             stream.on('limit', function(limitMessage) {
+                socket.emit('limitacion',{perdidos: limitMessage.limit.track});
                 return console.log(limitMessage);
             });
 
