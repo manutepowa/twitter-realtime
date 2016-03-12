@@ -6,7 +6,7 @@ var t = new twit(conf);
 module.exports = function(io) {
     var clientes = [];
     var online = 0;
-    
+
     // var currentTwitStream = null;
     io.on('connection', function(socket) {
         clientes.push(socket.id);
@@ -17,9 +17,12 @@ module.exports = function(io) {
          */
         socket.on('startStream', function(data) {
 
+            // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-                console.log(tweet);
+                console.log('Folowers: ' + tweet.user.followers_count +
+                    ' - FriendsCount: ' + tweet.user.friends_count +
+                    ' - Tweets Enviados: ' + tweet.user.statuses_count);
                 socket.emit('twet', tweet);
             });
 
@@ -31,8 +34,16 @@ module.exports = function(io) {
                 return console.log(limitMessage);
             });
 
+            stream.on('scrub_geo', function(scrubGeoMessage) {
+                return console.log(scrubGeoMessage);
+            });
+
             stream.on('warning', function(warning) {
-                return console.log('Error WARNING: ' + warning);
+                return console.log(warning);
+            });
+
+            stream.on('disconnect', function(disconnectMessage) {
+                return console.log(disconnectMessage);
             });
         });
 
@@ -54,13 +65,20 @@ module.exports = function(io) {
                 stream.stop();
                 console.log('Desconectado!!!');
             });
-
             stream.on('limit', function(limitMessage) {
                 return console.log(limitMessage);
             });
 
+            stream.on('scrub_geo', function(scrubGeoMessage) {
+                return console.log(scrubGeoMessage);
+            });
+
             stream.on('warning', function(warning) {
-                return console.log('Error WARNING: ' + warning);
+                return console.log(warning);
+            });
+
+            stream.on('disconnect', function(disconnectMessage) {
+                return console.log(disconnectMessage);
             });
         });
 
@@ -76,28 +94,39 @@ module.exports = function(io) {
             var parametro_2 = data.parametro2;
             var stream = t.stream('statuses/filter', { 'track': [parametro_1, parametro_2] });
             stream.on('tweet', function(tweet) {
-                
-                // console.log(err);
+
+                // console.log(tweet);
                 if (tweet.text) {
                     var text = tweet.text.toLowerCase();
                     // console.log(text);
                     if (text.indexOf(parametro_1) != -1) {
                         total_1++;
                         total++;
-                    }
-                    else if (text.indexOf(parametro_2) != -1) {
+
+                        socket.emit('extraLine', {
+                            follow: tweet.user.followers_count,
+                            friend: tweet.user.friends_count,
+                            tweets: tweet.user.statuses_count,
+                            track: parametro_1
+                        });
+                    } else if (text.indexOf(parametro_2) != -1) {
                         total_2++;
                         total++;
-                    }
-                    else
-                    {
+
+                        socket.emit('extraLine', {
+                            follow: tweet.user.followers_count,
+                            friend: tweet.user.friends_count,
+                            tweets: tweet.user.statuses_count,
+                            track: parametro_2
+                        });
+                    } else {
                         // console.log('Total_1: '+total_1+' - Total_2 :'+total_2+' - Total: '+total);
                         socket.emit('nulo');
                     }
 
-                    socket.emit('porcentajes',{
-                        p1: (total_1/total)*100,
-                        p2: (total_2/total)*100,
+                    socket.emit('porcentajes', {
+                        p1: (total_1 / total) * 100,
+                        p2: (total_2 / total) * 100,
                         track1: total_1,
                         track2: total_2
                     });
@@ -112,14 +141,21 @@ module.exports = function(io) {
                 stream.stop();
                 console.log('Desconectado!!!');
             });
-
             stream.on('limit', function(limitMessage) {
-                socket.emit('limitacion',{perdidos: limitMessage.limit.track});
+                socket.emit('limitacion', { perdidos: limitMessage.limit.track });
                 return console.log(limitMessage);
+            });
+
+            stream.on('scrub_geo', function(scrubGeoMessage) {
+                return console.log(scrubGeoMessage);
             });
 
             stream.on('warning', function(warning) {
                 return console.log(warning);
+            });
+
+            stream.on('disconnect', function(disconnectMessage) {
+                return console.log(disconnectMessage);
             });
         });
 

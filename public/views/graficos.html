@@ -1,7 +1,9 @@
 <h2>{{mensaje}}</h2>
 <hr>
-<div class="col-lg-12">
-    <div class="col-lg-3">
+<div class="col-lg-12 col-md-12">
+    <div class="col-lg-3 col-md-3">
+        <br>
+        <br>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Tracks a buscar</h3>
@@ -10,7 +12,8 @@
                 <form ng-submit="emitir()">
                     <div class="form-group">
                         <input type="text" ng-model="text1" placeholder="Parámetro 1 (apple)" class="form-control" required>
-                        <input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required><br>
+                        <input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required>
+                        <br>
                         <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
                         <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
                     </div>
@@ -18,10 +21,13 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 col-md-6">
+        <h4 class="text-center">Tracks</h4>
         <canvas id="bar" class="chart chart-bar" chart-colours="data.colours" chart-data="data.data" chart-labels="data.labels" chart-options="data.opt"></canvas>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3">
+        <br>
+        <br>
         <ul class="list-group">
             <li class="list-group-item myInfo" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
                 <span class="badge">{{cantidad}}</span> <strong>Total</strong>
@@ -41,5 +47,24 @@
                 <span class="badge">{{track2}}</span> <strong>{{text2}}</strong>
             </li>
         </ul>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <h4 class="text-center">Seguidores</h4>
+            <canvas id="pie" class="chart chart-pie" chart-data="follow.data" chart-labels="follow.labels" chart-options="follow.opt">
+            </canvas>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <h4 class="text-center">Siguiendo</h4>
+            <canvas id="pie" class="chart chart-pie" chart-data="friend.data" chart-labels="friend.labels" chart-options="friend.opt">
+            </canvas>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <h4 class="text-center">Nº Tweets</h4>
+            <canvas id="pie" class="chart chart-pie" chart-data="tweet.data" chart-labels="tweet.labels" chart-options="tweet.opt">
+            </canvas>
+        </div>
     </div>
 </div>
