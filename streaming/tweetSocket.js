@@ -107,6 +107,8 @@ module.exports = function(io) {
                             follow: tweet.user.followers_count,
                             friend: tweet.user.friends_count,
                             tweets: tweet.user.statuses_count,
+                            name: tweet.user.screen_name,
+                            media: tweet.user.profile_image_url,
                             track: parametro_1
                         });
                     } else if (text.indexOf(parametro_2) != -1) {
@@ -117,6 +119,8 @@ module.exports = function(io) {
                             follow: tweet.user.followers_count,
                             friend: tweet.user.friends_count,
                             tweets: tweet.user.statuses_count,
+                            name: tweet.user.screen_name,
+                            media: tweet.user.profile_image_url,
                             track: parametro_2
                         });
                     } else {

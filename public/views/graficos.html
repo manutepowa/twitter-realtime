@@ -52,6 +52,43 @@
 <div class="col-lg-12 col-md-12">
     <div class="row">
         <div class="col-lg-4 col-md-4">
+            <div class="panel">
+                <div class="panel-heading text-center"><strong>Top 5: Followers</strong></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
+                            <span class="badge">{{d.data}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel">
+                <div class="panel-heading text-center"><strong>Top 5: Friends</strong></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
+                            <span class="badge">{{d.data}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="panel">
+                <div class="panel-heading text-center"><strong>Tweets</strong></div>
+                <div class="panel-body">
+                    <canvas id="pie" class="chart chart-pie" chart-data="tweet.data" chart-labels="tweet.labels" chart-options="tweet.opt">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="col-lg-12 col-md-12">
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
             <h4 class="text-center">Seguidores</h4>
             <canvas id="pie" class="chart chart-pie" chart-data="follow.data" chart-labels="follow.labels" chart-options="follow.opt">
             </canvas>
@@ -68,3 +105,4 @@
         </div>
     </div>
 </div>
+ -->
