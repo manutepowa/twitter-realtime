@@ -108,7 +108,7 @@ angular.module("analyticApp")
             });
 
             mySocket.on('extraLine', function(data) {
-
+                console.log(data.follow);
                 if (data.track == $scope.text1) {
                     $scope.follow.push({
                         media: data.media,
@@ -122,11 +122,8 @@ angular.module("analyticApp")
                         data: data.friend,
                         class: 'colorTrack1'
                     });
-                    
-                    // $scope.follow.data[0] += data.follow;
-                    // $scope.friend.data[0] += data.friend;
-                    $scope.tweet.data[0] += data.tweets;
 
+                    $scope.tweet.data[0] += data.tweets;
                 } else {
                     $scope.follow.push({
                         media: data.media,
@@ -140,11 +137,7 @@ angular.module("analyticApp")
                         data: data.friend,
                         class: 'colorTrack2'
                     });
-                    $scope.$apply();
-                    // $scope.follow.data[1] += data.follow;
-                    // $scope.friend.data[1] += data.friend;
                     $scope.tweet.data[1] += data.tweets;
-
                 }
             });
 

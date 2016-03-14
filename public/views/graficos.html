@@ -57,7 +57,7 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         <li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
-                            <span class="badge">{{d.data}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
+                            <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
                         </li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="panel-body">
                     <ul class="list-group">
                         <li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
-                            <span class="badge">{{d.data}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
+                            <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="22" alt="...">&nbsp;&nbsp;{{d.name}}
                         </li>
                     </ul>
                 </div>
