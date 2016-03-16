@@ -134,10 +134,12 @@ module.exports = function(io) {
                         track1: total_1,
                         track2: total_2
                     });
+
+                    socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
                 }
 
-                // console.log(tweet);
-                // socket.emit('twet', tweet);
+                console.log(tweet.user.lang.substr(0,2));
+                
             });
 
 
