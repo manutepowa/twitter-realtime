@@ -55,6 +55,9 @@
             <div class="panel">
                 <div class="panel-heading text-center"><strong>Top 5: Followers</strong></div>
                 <div class="panel-body">
+                    <div class="jumbotron" ng-show="cantidad === 0">
+                        <h4>En este box se visualizará el top5 de usuarios con mas followers del total de los recibidos</h4>
+                    </div>
                     <ul class="list-group">
                         <li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
                             <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
@@ -67,6 +70,9 @@
             <div class="panel">
                 <div class="panel-heading text-center"><strong>Top 5: Friends</strong></div>
                 <div class="panel-body">
+                	<div class="jumbotron" ng-show="cantidad === 0">
+                        <h4>En este box se visualizará el top5 de usuarios con mas friends del total de los recibidos</h4>
+                    </div>
                     <ul class="list-group">
                         <li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
                             <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
@@ -79,24 +85,19 @@
             <div class="panel panelZ">
                 <div class="panel-heading text-center"><strong>Top 5: Lenguajes</strong></div>
                 <div class="panel-body">
+                	<div class="jumbotron" ng-show="cantidad === 0">
+                        <h4>En este box se visualizará el top5 del idioma mas hablado total de los recibidos</h4>
+                    </div>
                     <ul class="list-group">
                         <li class="list-group-item" ng-repeat="l in idiomas | orderBy: '-porcentaje'| limitTo:5">
-                        	<strong>{{l.idioma}}</strong>
-                        	<div ng-style="{ 'width' : l.porcentaje + '%'}" class="pColor"></div>
+                            <strong>{{l.idioma}}</strong>
+                            <span class="barP"><span class="barP2" ng-style="{ 'width' : l.porcentaje + '%'}"></span></span>
+                            <span class="badge">{{l.porcentaje | number:0}} %</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- <div class="col-lg-4 col-md-4">
-            <div class="panel">
-                <div class="panel-heading text-center"><strong>Tweets</strong></div>
-                <div class="panel-body">
-                    <canvas id="pie" class="chart chart-pie" chart-data="tweet.data" chart-labels="tweet.labels" chart-options="tweet.opt">
-                    </canvas>
-                </div>
-            </div>
-        </div> -->
     </div>
 </div>
 <!-- <div class="col-lg-12 col-md-12">

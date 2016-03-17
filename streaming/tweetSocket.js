@@ -111,6 +111,7 @@ module.exports = function(io) {
                             media: tweet.user.profile_image_url,
                             track: parametro_1
                         });
+                        socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
                     } else if (text.indexOf(parametro_2) != -1) {
                         total_2++;
                         total++;
@@ -123,8 +124,9 @@ module.exports = function(io) {
                             media: tweet.user.profile_image_url,
                             track: parametro_2
                         });
+                        socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
                     } else {
-                        // console.log('Total_1: '+total_1+' - Total_2 :'+total_2+' - Total: '+total);
+                        console.log(tweet.text);
                         socket.emit('nulo');
                     }
 
@@ -135,11 +137,8 @@ module.exports = function(io) {
                         track2: total_2
                     });
 
-                    socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
+                    
                 }
-
-                console.log(tweet.user.lang.substr(0,2));
-                
             });
 
 

@@ -237,17 +237,39 @@ input.form-control{
     top: 0;
     left: 0;
 }
-.panelZ .panel-body{
+/*.panelZ .panel-body{
     background: transparent;
     color: #2B333D;
     z-index: 97;
-}
-.panelZ .list-group-item{
+}*/
+/*.panelZ .list-group-item{
     background: transparent;
     z-index: 100;
     padding: 9px;
-}
+}*/
 
+.panelZ .list-group-item{
+    padding: 9px;
+}
+.barP{
+    position: absolute;
+    width: 53%; 
+    height: 9px;
+    background: transparent;
+    left: 90px;
+    border-radius: 5px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: solid 1px;
+}
+.barP2{
+    position: absolute;
+    background: #2B333D;
+    /*width: 62%;*/
+    height: 7px;
+    border-radius: 5px
+}
 /**
  * End Graficos JS
  */
