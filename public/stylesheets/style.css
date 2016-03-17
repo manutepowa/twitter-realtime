@@ -53,6 +53,7 @@ body{
     height: 100%;
     margin-left: -220px;
     overflow-y: auto;
+    overflow-x: hidden;
     background: #2b333d;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
@@ -90,7 +91,7 @@ body{
     background: #24272D; 
 }
 .sidebar-nav li {
-    text-indent: 20px;
+    text-indent: 12px;
     line-height: 40px;
 
 }
@@ -116,10 +117,10 @@ body{
     text-decoration: none;
 }
 
-.sidebar-nav li a i.fa{
-    display: inline;
-    margin-right: 13px;
-
+.sidebar-nav li a i{
+    /*display: inline;*/
+    margin-right: 25px;
+    width: 16px;
 }
 .sidebar-nav > .sidebar-brand {
     height: 65px;
@@ -285,7 +286,7 @@ input.form-control{
     }
 
     #wrapper.toggled {
-        padding-left: 0;
+        padding-left: 65px;
     }
 
     #sidebar-wrapper {
@@ -293,7 +294,13 @@ input.form-control{
     }
 
     #wrapper.toggled #sidebar-wrapper {
-        width: 0;
+        width: 65px;
+    }
+    #logo1{
+        margin-left: 8px;
+    }
+    #wrapper.toggled #sidebar-wrapper span{
+        display: none;
     }
 
     #page-content-wrapper {
