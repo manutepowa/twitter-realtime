@@ -126,7 +126,14 @@ module.exports = function(io) {
                         });
                         socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
                     } else {
-                        console.log(tweet.text);
+                        // console.log(tweet.entities.urls.length);
+                        // console.log({
+                        //     corta: tweet.entities.urls[0].url,
+                        //     entera: tweet.entities.urls[0].expanded_url,
+                        //     texto: tweet.entities.urls[0].display_url,
+                        //     indices: tweet.entities.urls[0].indices
+                        // });
+                        
                         socket.emit('nulo');
                     }
 
@@ -157,10 +164,6 @@ module.exports = function(io) {
 
             stream.on('warning', function(warning) {
                 return console.log(warning);
-            });
-
-            stream.on('disconnect', function(disconnectMessage) {
-                return console.log(disconnectMessage);
             });
         });
 

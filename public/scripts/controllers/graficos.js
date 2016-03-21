@@ -190,7 +190,7 @@ angular.module("analyticApp")
                         $scope.existe = true;
                         $scope.idiomas[key].cont++
                         $scope.idiomas[key].porcentaje = ($scope.idiomas[key].cont / $scope.totalIdioma) * 100; 
-                        console.log($scope.idiomas);
+                        // console.log($scope.idiomas);
                     }
                 });
 
