@@ -6,7 +6,7 @@ angular.module("analyticApp")
 
         $scope.emitir = function() {
             console.log($scope.text);
-            mySocket.emit('startStream', { 'parametro': $scope.text });
+            mySocket.emit('startStream', { 'parametro': $scope.text }); 
 
 
             mySocket.on('twet', function(data) {
