@@ -1,5 +1,20 @@
 $(document).ready(function() {
     var aORr = true;
+    setCookie(true);
+
+    // if (getCookie()) {
+    //     $("#wrapper").addClass("toggled");
+    //         $("#logo2").css({
+    //             visibility: 'hidden'
+    //         });
+    //         $("#logo1").css({
+    //             display: 'inline'
+    //         });
+    //         $(".sidebar-footer i").css({
+    //             transform: 'rotate(180deg)'
+    //         });
+    // }
+    // console.log(getCookie());
     $(".sidebar-footer").click(function(e) {
         e.preventDefault();
         // // $("#wrapper").toggleClass("toggled");
@@ -32,3 +47,12 @@ $(document).ready(function() {
 
     });
 })
+
+
+function setCookie(data){
+    document.cookie="sidebar="+data;
+}
+
+function getCookie(){
+    return document.cookie.substr(8,document.cookie.length - 8);
+}
