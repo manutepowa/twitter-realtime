@@ -1,26 +1,26 @@
 $(document).ready(function() {
-    var aORr = true;
-    setCookie(true);
 
-    // if (getCookie()) {
-    //     $("#wrapper").addClass("toggled");
-    //         $("#logo2").css({
-    //             visibility: 'hidden'
-    //         });
-    //         $("#logo1").css({
-    //             display: 'inline'
-    //         });
-    //         $(".sidebar-footer i").css({
-    //             transform: 'rotate(180deg)'
-    //         });
-    // }
-    // console.log(getCookie());
+    
+    if (getCookie() == "true") {
+        $("#wrapper").addClass("toggled");
+            $("#logo2").css({
+                visibility: 'hidden'
+            });
+            $("#logo1").css({
+                display: 'inline'
+            });
+            $(".sidebar-footer i").css({
+                transform: 'rotate(180deg)'
+            });
+            
+    }
+
     $(".sidebar-footer").click(function(e) {
         e.preventDefault();
         // // $("#wrapper").toggleClass("toggled");
-        // console.log(aORr);
+        console.log(getCookie());
 
-        if (aORr) {
+        if (getCookie() == "false") {
             $("#wrapper").addClass("toggled");
             $("#logo2").css({
                 visibility: 'hidden'
@@ -29,20 +29,20 @@ $(document).ready(function() {
                 display: 'inline'
             });
             $(".sidebar-footer i").css({
-                transform: 'rotate(180deg)',
-                transition: '.2s'
+                transform: 'rotate(180deg)'
             });
-            aORr = false;
-        } else {
+           
+            setCookie(true);
+        } else{
             $(".sidebar-footer i").css({
-                transform: 'rotate(360deg)',
-                transition: '.2s'
+                transform: 'rotate(360deg)'
             });
             $("#wrapper").removeClass("toggled");
             $("#logo2").css({
                 visibility: 'visible'
             });
-            aORr = true;
+           
+            setCookie(false);
         }
 
     });
@@ -54,5 +54,9 @@ function setCookie(data){
 }
 
 function getCookie(){
-    return document.cookie.substr(8,document.cookie.length - 8);
+	if (document.cookie.indexOf('sidebar') == -1){
+		setCookie(false);
+	}
+
+    return document.cookie.substr(document.cookie.indexOf('sidebar')+8,document.cookie.length - 8);
 }
