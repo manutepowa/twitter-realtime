@@ -160,7 +160,9 @@ body{
     cursor: pointer;
 }
 
-
+/**
+ * Stream JS
+ */
 .box{
     padding-top: 20px; 
     padding-bottom: 20px;
@@ -170,6 +172,16 @@ body{
     /*white-space: nowrap;*/
     overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.box i.fa-expand{
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    padding: 7px;
+}
+.box i.fa-expand:hover{
+    cursor: pointer;
 }
 
 .box-text{
@@ -186,6 +198,50 @@ input.form-control{
     right:0;
     /*padding: 4px;*/
 }
+/*Modal*/
+
+#modalInfoTweet .modal-header{
+    background: #333C47;
+    color: #C5D0DE;
+}
+#modalInfoTweet .modal-header button.close span{
+    color: #C5D0DE;
+}
+
+#modalInfoTweet .modal-footer{
+    background: #333C47;
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+#modalInfoTweet .modal-footer a{
+    background: #333C47;
+    border-color: #24272D;
+    color: #C5D0DE;
+}
+#modalInfoTweet .modal-footer a:hover{
+    border-color: #C5D0DE;
+}
+
+#modalInfoTweet .modal-body .img-circle{
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+}
+#modalInfoTweet .modal-body h4{
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
+    /* border-bottom: 1px solid #333C47; */
+    border-radius: 15px;
+    padding: 1px;
+}
+#modalInfoTweet .modal-body ul{list-style-type: circle;}
+
+/*End Modal*/
+/**
+ * END Stream JS
+ */
 
 /**
  * Mapa JS

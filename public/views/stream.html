@@ -1,37 +1,78 @@
+<div class="modal fade" id="modalInfoTweet" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center"><strong>{{moreInf.id}}</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-2"><img ng-src="{{imageInfo}}" alt="{{moreInf.id}}" class="img-circle"></div>
+                        <div class="col-lg-10">{{moreInf.t}}</div>
+                    </div>
+                    <br><br><br><br>
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <h4 class="text-center">Url's</h4>
+                            <ul>
+                            	<li ng-repeat="url in moreInf.url"><a href="{{url.url}}" target="_blank">{{url.url}}</a></li>
+                            	<li ng-show="moreInf.url.length === 0">Este Tweet no tiene Hashtags</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <h4 class="text-center">Hashtags</h4>
+                            <ul>
+                            	<li ng-repeat="hashtag in moreInf.hashtag"><a href="https://twitter.com/hashtag/{{hashtag.text}}" target="_blank">#{{hashtag.text}}</a></li>
+                            	<li ng-show="moreInf.hashtag.length === 0">Este Tweet no tiene Hashtags</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn" data-dismiss="modal">Cerrar</a>
+                <a href="https://twitter.com/{{moreInf.id}}/status/{{moreInf.id_str}}" class="btn" target="_blank">Ver en Twitter</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 <br>
 <div class="col-lg-12">
-	<div class="row">
-		<div class="col-lg-12">
-			<form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
-				<div class="form-group">
-				    <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
-				    <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
-				    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
-				    <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
-				</div>
-
-			</form>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
+                <div class="form-group">
+                    <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
+                    <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
+                    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+                    <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 <div class="col-lg-12">
-	<br>
-	<div class="row">
-		<div class="col-lg-4" ng-repeat="d in data">
-			<div class="col-lg-11 panel panel-default box">
-			<span class="localizacion">{{d.zona}}</span>
-				<div class="media">
-				  <div class="media-left">
-				      <img class="media-object" ng-src="{{d.image}}" alt="..."><br>
-				      <a href="https://twitter.com/{{d.id}}/status/{{d.id_str}}" class="btn btn-info" target="_blank">IR</a>
-				  </div>
-				  <div class="media-body box-text">
-				    <h4 class="media-heading"><strong>{{d.id}}</strong></h4>
-				    	{{d.t}} 
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="d in data">
+            <div class="col-lg-11 panel panel-default box">
+                <i ng-click="openModal(d.id_str)" class="fa fa-expand"></i>
+                <span class="localizacion">{{d.zona}}</span>
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" ng-src="{{d.image}}" alt="...">
+                        <br>
+                        <a href="https://twitter.com/{{d.id}}/status/{{d.id_str}}" class="btn btn-info" target="_blank">IR</a>
+                    </div>
+                    <div class="media-body box-text">
+                        <h4 class="media-heading"><strong>{{d.id}}</strong></h4> {{d.t}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-

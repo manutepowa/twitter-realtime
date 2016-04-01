@@ -20,9 +20,10 @@ module.exports = function(io) {
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-                console.log('Folowers: ' + tweet.user.followers_count +
-                    ' - FriendsCount: ' + tweet.user.friends_count +
-                    ' - Tweets Enviados: ' + tweet.user.statuses_count);
+                // console.log(tweet.entities.hashtags.length);
+                // tweet.entities.hashtags.forEach(function(hashtag){
+                //     console.log(hashtag.text);
+                // });
                 socket.emit('twet', tweet);
             });
 
