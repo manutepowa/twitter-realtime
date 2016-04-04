@@ -5,8 +5,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title text-center"><strong>{{moreInf.id}}</strong></h4>
             </div>
+            <div class="col-lg-12" id="retweetShow" ng-show="moreInf.retweeted_status">
+                		<span>RT</span>
+                		<a target="_blank" href="https://twitter.com/{{moreInf.id}}/status/{{moreInf.id_str}}">@{{moreInf.retweeted_status}}</a>
+                	</div><br>
             <div class="modal-body">
                 <div class="row">
+                	
                     <div class="col-lg-12">
                         <div class="col-lg-2"><img ng-src="{{imageInfo}}" alt="{{moreInf.id}}" class="img-circle"></div>
                         <div class="col-lg-10">{{moreInf.t}}</div>
@@ -75,4 +80,5 @@
             </div>
         </div>
     </div>
+                <!-- {{realTime}} -->
 </div>

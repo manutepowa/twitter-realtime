@@ -1,16 +1,19 @@
 /**
  * Mi Helper colors
  */
-.myWarning{
-    background-color:#fcf8e3;
+
+.myWarning {
+    background-color: #fcf8e3;
 }
-.myInfo{
+
+.myInfo {
     background-color: #d9edf7;
 }
 
-.myDanger{
-    background-color:#f2dede;
+.myDanger {
+    background-color: #f2dede;
 }
+
 
 /*
  */
@@ -19,20 +22,23 @@
 /**
  * Modificaciones del framework bootstrap
  */
-.container-fluid{
+
+.container-fluid {
     padding-right: 10px;
     padding-left: 10px;
 }
+
 
 /**
  * Fin Modificaciones del framework bootstrap
  */
 
-body{
+body {
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12pt; 
+    font-size: 12pt;
     background: #F9F9F9;
 }
+
 #wrapper {
     padding-left: 0;
     /*-webkit-transition: all 0.3s ease;
@@ -76,6 +82,7 @@ body{
     margin-right: -220px;
 }
 
+
 /* Sidebar Styles */
 
 .sidebar-nav {
@@ -87,18 +94,18 @@ body{
     list-style: none;
 }
 
-.active{
-    background: #24272D; 
+.active {
+    background: #24272D;
 }
+
 .sidebar-nav li {
     text-indent: 12px;
     line-height: 40px;
-
 }
+
 .sidebar-nav li:hover {
-   background: #24272D;
+    background: #24272D;
 }
-
 
 .sidebar-nav li a {
     display: block;
@@ -117,18 +124,20 @@ body{
     text-decoration: none;
 }
 
-.sidebar-nav li a i{
+.sidebar-nav li a i {
     /*display: inline;*/
     margin-right: 25px;
     width: 16px;
 }
+
 .sidebar-nav > .sidebar-brand {
     height: 65px;
     font-size: 18px;
     line-height: 60px;
     background: #333C47;
 }
-.topBar{
+
+.topBar {
     /*width: 100%;*/
     /*position: absolute;*/
     z-index: 1002;
@@ -138,17 +147,18 @@ body{
     border-bottom: 1px solid #efeff1;
     color: #4c4e54;
 }
+
 .sidebar-nav > .sidebar-brand a {
     color: #C5D0DE;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
     background: #24272D;
-    -webkit-transition:2s; 
+    -webkit-transition: 2s;
     transition: 2s
 }
 
-#sidebar-wrapper .sidebar-footer{
+#sidebar-wrapper .sidebar-footer {
     position: absolute;
     background: #333C47;
     color: #C5D0DE;
@@ -156,79 +166,103 @@ body{
     padding: 12px 0 12px 0;
     bottom: 0;
 }
-#sidebar-wrapper .sidebar-footer:hover{
+
+#sidebar-wrapper .sidebar-footer:hover {
     cursor: pointer;
 }
+
 
 /**
  * Stream JS
  */
-.box{
-    padding-top: 20px; 
+
+.box {
+    padding-top: 20px;
     padding-bottom: 20px;
     background: #EEEEEE;
     box-shadow: 1px 1px 3px #888888;
     height: 150px;
     /*white-space: nowrap;*/
     overflow: hidden;
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
-.box i.fa-expand{
+.box i.fa-expand {
     bottom: 0;
     right: 0;
     position: absolute;
     padding: 7px;
 }
-.box i.fa-expand:hover{
+
+.box i.fa-expand:hover {
     cursor: pointer;
 }
 
-.box-text{
+.box-text {
     font-size: 11pt;
 }
 
-input.form-control{
+input.form-control {
     margin-bottom: 2px;
 }
 
-.localizacion{
+.localizacion {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     /*padding: 4px;*/
 }
+
+
 /*Modal*/
 
-#modalInfoTweet .modal-header{
+#retweetShow {
+    margin-top: 4px;
+    /*margin-bottom: 4px;*/
+}
+
+#retweetShow span {
+    background: #C5D0DE;
+    font-size: 12px;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+#retweetShow a {}
+
+#modalInfoTweet .modal-header {
     background: #333C47;
     color: #C5D0DE;
 }
-#modalInfoTweet .modal-header button.close span{
+
+#modalInfoTweet .modal-header button.close span {
     color: #C5D0DE;
 }
 
-#modalInfoTweet .modal-footer{
+#modalInfoTweet .modal-footer {
     background: #333C47;
     padding: 10px;
     text-align: right;
     border-top: 1px solid #e5e5e5;
 }
-#modalInfoTweet .modal-footer a{
+
+#modalInfoTweet .modal-footer a {
     background: #333C47;
     border-color: #24272D;
     color: #C5D0DE;
 }
-#modalInfoTweet .modal-footer a:hover{
+
+#modalInfoTweet .modal-footer a:hover {
     border-color: #C5D0DE;
 }
 
-#modalInfoTweet .modal-body .img-circle{
+#modalInfoTweet .modal-body .img-circle {
     -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    0px 0px 14px 0px rgba(50, 50, 50, 0.75);
-    box-shadow:         0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
 }
-#modalInfoTweet .modal-body h4{
+
+#modalInfoTweet .modal-body h4 {
     -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
     box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.75);
@@ -236,18 +270,25 @@ input.form-control{
     border-radius: 15px;
     padding: 1px;
 }
-#modalInfoTweet .modal-body ul{list-style-type: circle;}
+
+#modalInfoTweet .modal-body ul {
+    list-style-type: circle;
+}
+
 
 /*End Modal*/
+
+
 /**
  * END Stream JS
  */
+
 
 /**
  * Mapa JS
  */
 
-.formMap{
+.formMap {
     background: #333C47;
     position: absolute;
     z-index: 1100;
@@ -255,38 +296,44 @@ input.form-control{
     border: none;
 }
 
-.formMap .panel-body{
+.formMap .panel-body {
     padding: 8px 0;
 }
 
-.myTrack{
+.myTrack {
     background-color: #333C47;
     color: #C5D0DE;
 }
+
+
 /**
  * End Mapa JS
  */
 
+
 /**
  * Graficos JS
  */
+
 .list-group-item {
     padding: 7px 15px;
     border: 1px solid #ddd;
 }
 
-.colorTrack1{
+.colorTrack1 {
     background: #ABC8D7;
 }
-.colorTrack2{
+
+.colorTrack2 {
     background: #E3E3E3;
 }
-.myBordered{
+
+.myBordered {
     border: 2px solid #2B333D;
     border-radius: 4px;
 }
 
-.pColor{
+.pColor {
     position: absolute;
     background: #d9edf7;
     z-index: -1;
@@ -294,23 +341,28 @@ input.form-control{
     top: 0;
     left: 0;
 }
+
+
 /*.panelZ .panel-body{
     background: transparent;
     color: #2B333D;
     z-index: 97;
 }*/
+
+
 /*.panelZ .list-group-item{
     background: transparent;
     z-index: 100;
     padding: 9px;
 }*/
 
-.panelZ .list-group-item{
+.panelZ .list-group-item {
     padding: 9px;
 }
-.barP{
+
+.barP {
     position: absolute;
-    width: 53%; 
+    width: 53%;
     height: 9px;
     background: transparent;
     left: 90px;
@@ -320,50 +372,50 @@ input.form-control{
     margin: auto;
     border: solid 1px;
 }
-.barP2{
+
+.barP2 {
     position: absolute;
     background: #2B333D;
     /*width: 62%;*/
     height: 7px;
     border-radius: 5px
 }
+
+
 /**
  * End Graficos JS
  */
+
 
 /**
  * [media description]
  * @param  {[type]} min-width:768px [description]
  * @return {[type]}                 [description]
  */
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 220px;
     }
-
     #wrapper.toggled {
         padding-left: 65px;
     }
-
     #sidebar-wrapper {
         width: 220px;
     }
-
     #wrapper.toggled #sidebar-wrapper {
         width: 65px;
     }
-    #logo1{
+    #logo1 {
         margin-left: 8px;
     }
-    #wrapper.toggled #sidebar-wrapper span{
+    #wrapper.toggled #sidebar-wrapper span {
         display: none;
     }
-
     #page-content-wrapper {
         padding: 20px;
         position: relative;
     }
-
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;

@@ -20,10 +20,9 @@ module.exports = function(io) {
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-                // console.log(tweet.entities.hashtags.length);
-                // tweet.entities.hashtags.forEach(function(hashtag){
-                //     console.log(hashtag.text);
-                // });
+                // console.log("retweeted: "+tweet.retweeted+
+                //             "retweet_count: "+tweet.retweet_count);
+                console.log(tweet.retweeted_status);
                 socket.emit('twet', tweet);
             });
 
