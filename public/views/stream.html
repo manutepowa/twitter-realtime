@@ -48,7 +48,7 @@
 <br>
 <div class="col-lg-12">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 pCol">
             <form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
                 <div class="form-group">
                     <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
@@ -64,7 +64,7 @@
     <br>
     <div class="row">
         <div class="col-lg-4" ng-repeat="d in data">
-            <div class="col-lg-11 panel panel-default box">
+            <!-- <div class="col-lg-11 panel panel-default box">
                 <i ng-click="openModal(d.id_str)" class="fa fa-expand"></i>
                 <span class="localizacion">{{d.zona}}</span>
                 <div class="media">
@@ -75,6 +75,17 @@
                     </div>
                     <div class="media-body box-text">
                         <h4 class="media-heading"><strong>{{d.id}}</strong></h4> {{d.t}}
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-lg-12 panel panel-default box" ng-click="openModal(d.id_str)">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" ng-src="{{d.image}}" alt="...">
+                    </div>
+                    <div class="media-body box-text">
+                        <h4 class="media-heading"><strong>{{d.id}}</strong></h4>
+                         <p>{{d.t}}</p>
                     </div>
                 </div>
             </div>

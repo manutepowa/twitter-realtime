@@ -49,9 +49,7 @@ angular.module("analyticApp")
                         hashtag: tweet.entities.hashtags,
                         retweeted_status: tweet.retweeted_status.user.screen_name
                     });
-                }
-                else
-                {
+                } else {
                     $scope.data.push({
                         id: tweet.user.screen_name,
                         id_str: tweet.id_str,
@@ -77,4 +75,20 @@ angular.module("analyticApp")
             mySocket.emit('disconnect');
             mySocket.disconnect();
         }
+
+
+
+
+        $('.pCol').css({
+            "min-height": ($(window).height() - 130) + 'px'
+        });
+        $('.pCol form').addClass('midd');
+        $('.pCol form').on('submit', function() {
+            $(this).removeClass('midd');
+            $(this).parent().removeClass('pCol');
+            $(this).parent().css({
+                "min-height": 0,
+                "transition": 'all 0.2s ease'
+            });
+        });
     });

@@ -175,42 +175,49 @@ body {
 /**
  * Stream JS
  */
-
-.box {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background: #EEEEEE;
-    box-shadow: 1px 1px 3px #888888;
-    height: 150px;
-    /*white-space: nowrap;*/
-    overflow: hidden;
-    text-overflow: ellipsis;
+/*Form Search*/
+.pCol{
+    /*height:100vh;*/
+    background-color: #EFEFF1;
+    border-radius: 50%;
 }
-
-.box i.fa-expand {
-    bottom: 0;
-    right: 0;
+.pCol form.midd{
     position: absolute;
-    padding: 7px;
+    top: 37%;
+    transition: all 0.2s ease;
 }
 
-.box i.fa-expand:hover {
+/*End Form Search*/
+.box {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background: #C5D0DE;
+    box-shadow: 1px 1px 1px #2B333D;
+    height: 63px;
+}
+.box:hover{
     cursor: pointer;
+    box-shadow: 1px 1px 6px #2B333D;
+    transition: all 0.1s ease;
+}
+.box p{
+    line-height: 13px;
+    height: 18px;
+    /*white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
+}
+.box h4{
+    font-size: 16px;
+    color: #333C47;
 }
 
 .box-text {
-    font-size: 11pt;
+    font-size: 10pt;
 }
 
 input.form-control {
     margin-bottom: 2px;
-}
-
-.localizacion {
-    position: absolute;
-    top: 0;
-    right: 0;
-    /*padding: 4px;*/
 }
 
 
