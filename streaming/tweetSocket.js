@@ -22,7 +22,7 @@ module.exports = function(io) {
             stream.on('tweet', function(tweet) {
                 // console.log("retweeted: "+tweet.retweeted+
                 //             "retweet_count: "+tweet.retweet_count);
-                console.log(tweet.retweeted_status);
+                // console.log(tweet.retweeted_status);
                 socket.emit('twet', tweet);
             });
 
