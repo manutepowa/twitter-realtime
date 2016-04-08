@@ -13,9 +13,9 @@ angular.module("analyticApp", [
         mySocket.emit('NewPlayer');
         return mySocket;
     })
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise("/inicio");
-
+        $locationProvider.hashPrefix('!');
         $stateProvider
             .state('inicio', {
                 url: '/inicio',
@@ -37,11 +37,14 @@ angular.module("analyticApp", [
                 templateUrl: "/views/mapa.html",
                 controller: "mapaCrtl"
             })
-            .state('Graficos', {
+            .state('graficos', {
                 url: '/graficos',
                 templateUrl: "/views/graficos.html",
                 controller: "graficosCrtl"
             })
+
+
+
     })
     .controller("NavList", function($scope, $location) {
         $scope.navClass = function(page) {

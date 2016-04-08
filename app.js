@@ -26,7 +26,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+// app.all('*',function(req, res){
+//   res.redirect('/');
+// });
 app.use('/', routes);
 app.use('/login', users);
 
@@ -38,7 +40,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+console.log(__dirname);
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
