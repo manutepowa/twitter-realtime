@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -7,6 +8,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+require('./models/user');
+
 
 var app = express();
 
@@ -40,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-console.log(__dirname);
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
