@@ -35,6 +35,10 @@ var twitterConfig = function(app){
 		successRedirect: '/',
 		failureRedirect: '/login'
 	}));
+	app.get('/logout', function(req, res){
+		req.logout();
+		res.redirect('/');
+	});
 }
 
 module.exports = twitterConfig;

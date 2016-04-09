@@ -79,13 +79,14 @@
        		<div class="container-fluid">
                 <div class="row">
                 	<div class="col-lg-6 col-md-6 col-xs-6">
-                        
-                        <span><%= username %></span>
-                        <span><%= id %></span>
+                        <i class="fa fa-user"></i>&nbsp;&nbsp;<span><%= username %></span>
                 	</div>
                 	<div class="col-lg-6 col-md-6 col-xs-6">
-                		<div class="col-lg-1 col-md-1 col-xs-1 pull-right text-center"><i class="fa fa-sign-out"></i></div>
-                		<div class="col-lg-1 col-md-1 col-xs-1 pull-right text-center"><i class="fa fa-plus-square"></i></div>
+                		<div class="col-lg-2 col-md-2 col-xs-2 pull-right text-center" data-toggle="tooltip" data-placement="left" title="Cerrar sesión">
+                            <a href="/logout">
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </div>
                 	</div>
                 </div>
             </div>

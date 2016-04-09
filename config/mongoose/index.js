@@ -6,13 +6,14 @@ var conf = require('./config');
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
 var port = process.env.OPENSHIFT_MONGODB_DB_PORT || '27017';
 
+//Configuración para la Base de Datos en el PaaS
 if (process.env.OPENSHIFT_MONGODB_DB_HOST) {
 	mongoose.connect('mongodb://'+conf.user+':'+conf.pass+'@'+host+':'+port+'/analytic');
 }
 else{
 	mongoose.connect('mongodb://'+host+':'+port+'/analytic');
 }
-// console.log('mongodb://'+host+':'+port);
+
 
 
 

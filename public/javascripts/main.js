@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    
+    $('[data-toggle="tooltip"]').tooltip();
     if (getCookie() == "true") {
         $("#wrapper").addClass("toggled");
             $("#logo2").css({

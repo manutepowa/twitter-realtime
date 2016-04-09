@@ -148,14 +148,34 @@ body {
     color: #4c4e54;
 }
 
+.topBar i.fa-user{
+    color: #333C47;
+    font-size: 19px;
+}
+.topBar span{
+    font-family: Helvetica, Arial, sans-serif;
+    color: #333C47;
+    font-size: 17px;
+}
+
+.topBar a{
+    color: #333C47;
+}
+.topBar a:hover{
+    color: #C5D0DE;
+    background: #2B333D;
+    padding: 10px;
+    border-radius: 50%;
+    transition: .1s;
+}
 .sidebar-nav > .sidebar-brand a {
     color: #C5D0DE;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
     background: #24272D;
-    -webkit-transition: 2s;
-    transition: 2s
+    -webkit-transition: .2s;
+    transition: .2s;
 }
 
 #sidebar-wrapper .sidebar-footer {
