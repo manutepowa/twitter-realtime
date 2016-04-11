@@ -1,6 +1,6 @@
 var twit = require('twit');
 var conf = require('../config/configTwitter');
-var t = new twit(conf);
+
 
 
 module.exports = function(io) {
@@ -9,6 +9,8 @@ module.exports = function(io) {
 
     // var currentTwitStream = null;
     io.on('connection', function(socket) {
+        var t = new twit(conf);
+        
         clientes.push(socket.id);
         console.log('Cliente conectado!');
 

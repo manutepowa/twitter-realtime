@@ -53,31 +53,17 @@
                 <div class="form-group">
                     <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
                     <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control">
-                    <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+                    <button id="submitStream" type="submit" class="col-lg-5 btn btn-success">Buscar</button>
                     <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<div class="col-lg-12">
-    <br>
+<div class="col-lg-8 minHeigth" ng-hide="data.length === 0">
+    
     <div class="row">
         <div class="col-lg-4" ng-repeat="d in data">
-            <!-- <div class="col-lg-11 panel panel-default box">
-                <i ng-click="openModal(d.id_str)" class="fa fa-expand"></i>
-                <span class="localizacion">{{d.zona}}</span>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" ng-src="{{d.image}}" alt="...">
-                        <br>
-                        <a href="https://twitter.com/{{d.id}}/status/{{d.id_str}}" class="btn btn-info" target="_blank">IR</a>
-                    </div>
-                    <div class="media-body box-text">
-                        <h4 class="media-heading"><strong>{{d.id}}</strong></h4> {{d.t}}
-                    </div>
-                </div>
-            </div> -->
             <div class="col-lg-12 panel panel-default box" ng-click="openModal(d.id_str)">
                 <div class="media">
                     <div class="media-left">
@@ -92,4 +78,21 @@
         </div>
     </div>
                 <!-- {{realTime}} -->
+</div>
+<div class="col-lg-1 minHeigth"></div>
+<div class="col-lg-3 minHeigth" ng-hide="data.length === 0">
+    
+    <div class="row">
+        <ul class="list-group">
+            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
+                <span class="badge">123</span> <strong>#Apple</strong>
+            </li>
+            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="No contienen track">
+                <span class="badge">22</span> <strong>#Samsung</strong>
+            </li>
+            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="No recibidos por la red">
+                <span class="badge">31</span> <strong>#Xiaomi</strong>
+            </li>
+        </ul>
+    </div>
 </div>

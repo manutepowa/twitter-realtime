@@ -148,9 +148,8 @@ body {
     color: #4c4e54;
 }
 
-.topBar i.fa-user{
-    color: #333C47;
-    font-size: 19px;
+.topBar img{
+    width: 40px;
 }
 .topBar span{
     font-family: Helvetica, Arial, sans-serif;
@@ -213,7 +212,7 @@ body {
     padding-bottom: 4px;
     background: #C5D0DE;
     box-shadow: 1px 1px 1px #2B333D;
-    height: 63px;
+    height: 59px;
 }
 .box:hover{
     cursor: pointer;
@@ -240,6 +239,23 @@ input.form-control {
     margin-bottom: 2px;
 }
 
+.col-lg-1.minHeigth{
+    width: 5.333333%;
+}
+
+.minHeigth::-webkit-scrollbar {
+    width: 5px;
+    /*height: 2em*/
+}
+.minHeigth::-webkit-scrollbar-button {
+    background: #C5D0DE;
+}
+.minHeigth::-webkit-scrollbar-track-piece {
+    background: #C5D0DE;
+}
+.minHeigth::-webkit-scrollbar-thumb {
+    background: #2B333D;
+}​
 
 /*Modal*/
 

@@ -3,7 +3,6 @@ angular.module("analyticApp")
 
         var allInfo = {};
 
-
         allInfo.getMoreInfo = function(datos, id) {
             for (var i = 0; i <= datos.length - 1; i++) {
                 // console.log("hola");
@@ -13,13 +12,6 @@ angular.module("analyticApp")
                     break;
                 }
             }
-            // angular.forEach(datos, function(dato, key){
-            //     console.log("hola");
-            //     if (dato.id_str === id) {
-            //         allInfo.info = dato;
-            //         return false;
-            //     }
-            // });
         }
         return allInfo;
     })
@@ -79,6 +71,11 @@ angular.module("analyticApp")
 
 
 
+        $('.minHeigth').css({
+            maxHeight: $(document).height() - $("#submitStream").offset().top - 70,
+            overflowY: 'auto',
+            marginTop: '15px'
+        });
         $('.pCol').css({
             "min-height": ($(window).height() - 130) + 'px'
         });

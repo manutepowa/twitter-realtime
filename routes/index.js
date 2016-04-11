@@ -14,10 +14,17 @@ function checkLogin(req, res, next){
 
 /* GET home page. */
 router.get('/', checkLogin, function(req, res, next) {
-	console.log('============================');
+	console.log('==============USER==============');
+	console.log(req.user);
+	console.log('===================================');
+	console.log('==============SESSION==============');
 	console.log(req.session);
-	console.log('============================');
-	res.render('index', {username: req.user.username, id: req.user.userID });
+	console.log('===================================');
+	res.render('index', {
+							username: req.user.username,
+							id: req.user.userID,
+							image: req.user.urlPhoto 
+						});
 });
 		   			
 module.exports = router;

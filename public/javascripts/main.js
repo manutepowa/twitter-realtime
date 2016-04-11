@@ -46,7 +46,26 @@ $(document).ready(function() {
         }
 
     });
-})
+
+
+    //HEight div stream
+    
+    // $(document).on('click', '#submitStream', function() {
+    //     var tam = $(document).height() - $(this).offset().top + $(".topBar").height() + $('form').height();
+
+    //     console.log($(document).height());
+    //     console.log('========================');
+    //     console.log($(this).position());
+    //     $('.minHeigth').css({
+    //         minHeight: tam,
+    //         overflowY: 'auto',
+    //         marginTop: '15px'
+    //     });
+    //     // console.log(tam);
+    // });
+
+
+});
 
 
 function setCookie(data){
