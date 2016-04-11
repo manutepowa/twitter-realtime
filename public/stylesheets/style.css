@@ -243,17 +243,21 @@ input.form-control {
     width: 5.333333%;
 }
 
-.minHeigth::-webkit-scrollbar {
+.minHeigth::-webkit-scrollbar,
+.minHeigth>*::-webkit-scrollbar {
     width: 5px;
     /*height: 2em*/
 }
-.minHeigth::-webkit-scrollbar-button {
+.minHeigth::-webkit-scrollbar-button,
+.minHeigth>*::-webkit-scrollbar-button {
     background: #C5D0DE;
 }
-.minHeigth::-webkit-scrollbar-track-piece {
+.minHeigth::-webkit-scrollbar-track-piece,
+.minHeigth>*::-webkit-scrollbar-track-piece {
     background: #C5D0DE;
 }
-.minHeigth::-webkit-scrollbar-thumb {
+.minHeigth::-webkit-scrollbar-thumb,
+.minHeigth>*::-webkit-scrollbar-thumb {
     background: #2B333D;
 }​
 

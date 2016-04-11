@@ -71,11 +71,24 @@ angular.module("analyticApp")
 
 
 
+
+
+
+        $scope.tamHeight = $(document).height() - $("#submitStream").offset().top - 70;
         $('.minHeigth').css({
-            maxHeight: $(document).height() - $("#submitStream").offset().top - 70,
-            overflowY: 'auto',
+            maxHeight: $scope.tamHeight,
             marginTop: '15px'
         });
+
+        $('.topHashtagHeight').css({
+            // minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
+            height: $scope.tamHeight / 2
+        });
+        $('.topHashtagHeight').next().css({
+            // minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
+            height: $scope.tamHeight / 2
+        });
+        $('.scroll').css('overflowY', 'auto');
         $('.pCol').css({
             "min-height": ($(window).height() - 130) + 'px'
         });
