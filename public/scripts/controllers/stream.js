@@ -18,7 +18,7 @@ angular.module("analyticApp")
     .controller("streamCrtl", function($scope, mySocket, moreInfo) {
         $scope.bienvenida = "Stream";
         $scope.data = [];
-
+        $scope.media = [];
 
         $scope.emitir = function() {
             // console.log($scope.text);
@@ -52,6 +52,11 @@ angular.module("analyticApp")
                         retweeted_status: false
                     });
                 }
+
+                $scope.media.push({
+                    foto: tweet.entities.media[0].media_url+':thumb',
+                    url: tweet.entities.media[0].display_url
+                }); 
             });
         }
         $scope.openModal = function(id) {

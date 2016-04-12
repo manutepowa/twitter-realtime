@@ -61,6 +61,7 @@
                 </div>
             </form>
             <!-- {{topHashtag}} -->
+            <!-- {{media}} -->
         </div>
     </div>
 </div>
@@ -95,7 +96,9 @@
     </div>
     <div class="col-lg-12 scroll">
         <div class="row">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque voluptas veritatis expedita laboriosam saepe velit obcaecati officia suscipit alias aliquid mollitia dolores iste quia 
+            <div class="col-lg-6 streamMedia" ng-repeat="m in media">
+                <a ng-href="http://{{m.url}}" target="_blank"><img ng-src="{{m.foto}}" alt="hola"></a>
+            </div>
         </div>
     </div>
 </div>

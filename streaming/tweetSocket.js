@@ -22,7 +22,7 @@ module.exports = function(io) {
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-
+                console.log(tweet.entities.media);
                 socket.emit('twet', tweet);
                 if (tweet.entities.hashtags.length != 0) {
                     topHashtag = require('./functions/getHashtagTweet')(tweet.entities.hashtags,topHashtag);
