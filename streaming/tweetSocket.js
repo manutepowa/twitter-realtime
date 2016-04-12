@@ -18,14 +18,16 @@ module.exports = function(io) {
          * Start Stream
          */
         socket.on('startStream', function(data) {
-
+            var topHashtag = [];
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             var stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
-                // console.log("retweeted: "+tweet.retweeted+
-                //             "retweet_count: "+tweet.retweet_count);
-                // console.log(tweet.retweeted_status);
+
                 socket.emit('twet', tweet);
+                if (tweet.entities.hashtags.length != 0) {
+                    topHashtag = require('./functions/getHashtagTweet')(tweet.entities.hashtags,topHashtag);
+                    socket.emit('streamHashTag', topHashtag);
+                }
             });
 
             socket.on('disconnect', function() {

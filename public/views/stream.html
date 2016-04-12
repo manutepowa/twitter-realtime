@@ -6,9 +6,9 @@
                 <h4 class="modal-title text-center"><strong>{{moreInf.id}}</strong></h4>
             </div>
             <div class="col-lg-12" id="retweetShow" ng-show="moreInf.retweeted_status">
-                		<span>RT</span>
-                		<a target="_blank" href="https://twitter.com/{{moreInf.id}}/status/{{moreInf.id_str}}">@{{moreInf.retweeted_status}}</a>
-                	</div><br>
+        		<span>RT</span>
+        		<a target="_blank" href="https://twitter.com/{{moreInf.id}}/status/{{moreInf.id_str}}">@{{moreInf.retweeted_status}}</a>
+            </div><br>
             <div class="modal-body">
                 <div class="row">
                 	
@@ -57,6 +57,7 @@
                     <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
                 </div>
             </form>
+            {{topHashtag}}
         </div>
     </div>
 </div>
@@ -84,14 +85,8 @@
     
     <div class="row">
         <ul class="list-group">
-            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
-                <span class="badge">123</span> <strong>#Apple</strong>
-            </li>
-            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="No contienen track">
-                <span class="badge">22</span> <strong>#Samsung</strong>
-            </li>
-            <li class="list-group-item" data-toggle="tooltip" data-placement="left" title="No recibidos por la red">
-                <span class="badge">31</span> <strong>#Xiaomi</strong>
+            <li class="list-group-item" ng-repeat="data in topHashtag">
+                <span class="badge">{{data.cantidad}}</span> <strong>{{data.text}}</strong>
             </li>
         </ul>
     </div>

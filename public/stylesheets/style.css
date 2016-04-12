@@ -136,7 +136,10 @@ body {
     line-height: 60px;
     background: #333C47;
 }
-
+.sidebar-nav > .sidebar-brand img{
+    margin-top: -6px;
+    margin-left: -7px;
+}
 .topBar {
     /*width: 100%;*/
     /*position: absolute;*/

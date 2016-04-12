@@ -20,7 +20,6 @@ angular.module("analyticApp")
         $scope.data = [];
 
 
-
         $scope.emitir = function() {
             // console.log($scope.text);
             mySocket.emit('startStream', { 'parametro': $scope.text });
@@ -63,6 +62,10 @@ angular.module("analyticApp")
             // console.log($scope.moreInf.hashtag.length);
             $('#modalInfoTweet').modal('show');
         }
+        mySocket.on('streamHashTag',function(data){
+            $scope.topHashtag = data;
+        });
+
         $scope.detener = function() {
             mySocket.emit('disconnect');
             mySocket.disconnect();
