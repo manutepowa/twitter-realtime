@@ -91,7 +91,7 @@ angular.module("analyticApp")
             // minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
             height: $scope.tamHeight / 2
         });
-        $('.scroll').css('overflowY', 'auto');
+
         $('.pCol').css({
             "min-height": ($(window).height() - 130) + 'px'
         });

@@ -245,7 +245,12 @@ input.form-control {
 .col-lg-1.minHeigth{
     width: 5.333333%;
 }
-
+.streamHashtag.list-group-item {
+    background: #F9F9F9;
+    border: none !important;
+    padding: 0px 15px;
+}
+.scroll{overflow-y: auto;}
 .minHeigth::-webkit-scrollbar,
 .minHeigth>*::-webkit-scrollbar {
     width: 5px;
@@ -253,15 +258,15 @@ input.form-control {
 }
 .minHeigth::-webkit-scrollbar-button,
 .minHeigth>*::-webkit-scrollbar-button {
-    background: #C5D0DE;
+    background: #F9F9F9;
 }
 .minHeigth::-webkit-scrollbar-track-piece,
 .minHeigth>*::-webkit-scrollbar-track-piece {
-    background: #C5D0DE;
+    background: #F9F9F9;
 }
 .minHeigth::-webkit-scrollbar-thumb,
 .minHeigth>*::-webkit-scrollbar-thumb {
-    background: #2B333D;
+    background: #C5D0DE;
 }​
 
 /*Modal*/
