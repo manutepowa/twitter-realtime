@@ -21,7 +21,8 @@ angular.module("analyticApp")
         $scope.media = [];
 
         $scope.emitir = function() {
-            // console.log($scope.text);
+            console.log("Empezar");
+            // mySocket.reconnect();
             mySocket.emit('startStream', { 'parametro': $scope.text });
 
 

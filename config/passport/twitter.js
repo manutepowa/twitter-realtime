@@ -14,15 +14,14 @@ var twitterConfig = function(app){
 	}, function(accessToken, accessTokenSecret, profile, done){
 
 		User.findOne({userID: profile.id}, function(err, user){
-			if (err) {throw(err);}
-
 			/**
 			 * Tokens para la API
 			 * - Son los tokens del Usuario.
 			 */
 			conf.access_token = accessToken;
 			conf.access_token_secret = accessTokenSecret;
-
+			
+			if (err) {throw(err);}
 			if (!err && user != null) {return done(null, user);}
 
 			var user = new User({

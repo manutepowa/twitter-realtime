@@ -6,11 +6,10 @@ angular.module("analyticApp", [
     .factory('mySocket', function(socketFactory) {
         // var myIoSocket = io.connect('http://localhost:8080',
         //                             {'forceNew': true});
-        var myIoSocket = io.connect({ 'forceNew': true });
-        mySocket = socketFactory({
+        var myIoSocket = io.connect();
+        var mySocket = socketFactory({
             ioSocket: myIoSocket
         });
-        mySocket.emit('NewPlayer');
         return mySocket;
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
