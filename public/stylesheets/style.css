@@ -210,13 +210,24 @@ body {
 }
 
 /*End Form Search*/
+.streamMedia.ng-enter,
+.animateStream.ng-enter{
+ transition:0.5s linear all;
+  opacity:0;
+}
+.streamMedia.ng-enter.ng-enter-active,
+.animateStream.ng-enter.ng-enter-active{
+ opacity:1;
+}
 .box {
     padding-top: 4px;
     padding-bottom: 4px;
     background: #C5D0DE;
     box-shadow: 1px 1px 1px #2B333D;
     height: 59px;
+   
 }
+
 .box:hover{
     cursor: pointer;
     box-shadow: 1px 1px 6px #2B333D;
@@ -251,8 +262,13 @@ input.form-control {
     padding: 0px 15px;
 }
 .streamHashtag > .badge{
-    background-color: #F9F9F9 !important;
-    color:#333C47 !important;
+    background-color: #C5D0DE !important;
+    color:#2B333D !important;
+}
+.streamMedia img:hover{
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75); 
 }
 .streamMedia img{
     padding: 2px;

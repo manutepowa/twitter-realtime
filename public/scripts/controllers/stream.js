@@ -54,10 +54,10 @@ angular.module("analyticApp")
                     });
                 }
 
-                $scope.media.push({
-                    foto: tweet.entities.media[0].media_url+':thumb',
-                    url: tweet.entities.media[0].display_url
-                }); 
+                    $scope.media.push({
+                        foto: tweet.entities.media[0].media_url+':thumb',
+                        url: tweet.entities.media[0].display_url
+                    }); 
             });
         }
         $scope.openModal = function(id) {
@@ -82,7 +82,7 @@ angular.module("analyticApp")
 
 
 
-
+        $('[data-toggle="tooltip"]').tooltip();
         $scope.tamHeight = $(document).height() - $("#submitStream").offset().top - 70;
         $('.minHeigth').css({
             maxHeight: $scope.tamHeight,
@@ -91,11 +91,11 @@ angular.module("analyticApp")
 
         $('.topHashtagHeight').css({
             // minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
-            height: $scope.tamHeight / 2
+            height: ($scope.tamHeight / 2) - 8
         });
-        $('.topHashtagHeight').next().css({
+        $('.topHashtagHeight').next().next().css({
             // minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
-            height: $scope.tamHeight / 2
+            height: ($scope.tamHeight / 2) - 8
         });
 
         $('.pCol').css({
@@ -110,4 +110,5 @@ angular.module("analyticApp")
                 "transition": 'all 0.2s ease'
             });
         });
+        
     });

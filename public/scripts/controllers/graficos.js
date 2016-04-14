@@ -221,12 +221,6 @@ angular.module("analyticApp")
             $scope.perdidos += data.perdidos;
         });
 
-        // $scope.$apply(function(){
-        //     console.log($scope.data.colours[0].fillColor);
-
-        //     $scope.data.data[0][2] = 23;
-        // });
-
         /**
          * Inicializacion de tooltip
          * Aqui no se debería hacer

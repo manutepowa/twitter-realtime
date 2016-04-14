@@ -1,12 +1,13 @@
 angular.module("analyticApp", [
         'chart.js',
         'ui.router',
-        'btford.socket-io'
+        'btford.socket-io',
+        'ngAnimate'
     ])
     .factory('mySocket', function(socketFactory) {
         // var myIoSocket = io.connect('http://localhost:8080',
         //                             {'forceNew': true});
-        var myIoSocket = io.connect();
+        var myIoSocket = io.connect({forceNew: true});
         var mySocket = socketFactory({
             ioSocket: myIoSocket
         });
