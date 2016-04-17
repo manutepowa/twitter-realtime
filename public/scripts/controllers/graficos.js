@@ -143,7 +143,8 @@ angular.module("analyticApp")
             });
 
             mySocket.on('extraLine', function(data) {
-                if (data.track == $scope.text1) {
+                console.log(data.media);
+                if (data.track == $scope.text1.toLowerCase()) {
                     $scope.follow.push({
                         media: data.media,
                         name: data.name,
@@ -208,8 +209,8 @@ angular.module("analyticApp")
          * Detener el Socket
          */
         $scope.detener = function() {
-            mySocket.emit('disconnect');
-            mySocket.disconnect();
+            mySocket.emit('parar');
+            // mySocket.parar();
         }
 
 

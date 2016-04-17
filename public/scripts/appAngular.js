@@ -4,14 +4,43 @@ angular.module("analyticApp", [
         'btford.socket-io',
         'ngAnimate'
     ])
-    .factory('mySocket', function(socketFactory) {
-        // var myIoSocket = io.connect('http://localhost:8080',
-        //                             {'forceNew': true});
-        var myIoSocket = io.connect({forceNew: true});
-        var mySocket = socketFactory({
-            ioSocket: myIoSocket
-        });
-        return mySocket;
+    // .factory('mySocket', function(socketFactory) {
+    //     var myIoSocket = io.connect({forceNew: true});
+    //     var mySocket = socketFactory({
+    //         ioSocket: myIoSocket
+    //     });
+    //     return mySocket;
+    // })
+    .factory('mySocket', function($rootScope) {
+        var socket = io.connect();
+        return {
+            on: function(eventName, callback) {
+                socket.on(eventName, function() {
+                    var args = arguments;
+                    $rootScope.$apply(function() {
+                        callback.apply(socket, args);
+                    });
+                });
+            },
+            emit: function(eventName, data, callback) {
+                socket.emit(eventName, data, function() {
+                    var args = arguments;
+                    $rootScope.$apply(function() {
+                        if (callback) {
+                            callback.apply(socket, args);
+                        }
+                    });
+                })
+            },
+            iniciar: function(){
+                    socket = io.connect();
+                    console.log(socket.connected);
+            },
+            parar: function(){
+
+                socket.disconnect();
+            }
+        };
     })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise("/inicio");

@@ -6,33 +6,29 @@ var conf = require('../config/configTwitter');
 module.exports = function(io) {
     var clientes = [];
     var online = 0;
-
+    var stream;
     // var currentTwitStream = null;
     io.on('connection', function(socket) {
         var t = new twit(conf);
-        
+
         clientes.push(socket.id);
         console.log('Cliente conectado!');
-
         /**
          * Start Stream
          */
         socket.on('startStream', function(data) {
+            console.log(socket.id);
             var topHashtag = [];
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
-            var stream = t.stream('statuses/filter', { 'track': data.parametro });
+            stream = t.stream('statuses/filter', { 'track': data.parametro });
             stream.on('tweet', function(tweet) {
                 socket.emit('twet', tweet);
                 if (tweet.entities.hashtags.length != 0) {
-                    topHashtag = require('./functions/getHashtagTweet')(tweet.entities.hashtags,topHashtag);
+                    topHashtag = require('./functions/getHashtagTweet')(tweet.entities.hashtags, topHashtag);
                     socket.emit('streamHashTag', topHashtag);
                 }
             });
 
-            socket.on('disconnect', function() {
-                stream.stop();
-                console.log('Desconectado!!!');
-            });
             stream.on('limit', function(limitMessage) {
                 return console.log(limitMessage);
             });
@@ -51,23 +47,26 @@ module.exports = function(io) {
         });
 
         /**
-         * Start Mapas
+         * Start Mapas{ 'locations': '-180,-90,180,90' }
          */
-        socket.on('startMapa', function() {
-
-            var stream = t.stream('statuses/filter', { 'locations': '-180,-90,180,90' });
+        socket.on('startMapa', function(data) {
+            var parametro = data.parametro.toLowerCase();
+            if (parametro == "all") {
+                stream = t.stream('statuses/filter', { 'locations': '-180,-90,180,90' });
+            } else {
+                stream = t.stream('statuses/filter', { 'track': parametro });
+            }
+            // var stream = t.stream('statuses/filter', { 'track': parametro });
+            // var stream = t.stream('statuses/filter', { 'locations': '-180,-90,180,90' });
+            // var stream = t.stream('statuses/sample', { 'delimited': 100 });
             stream.on('tweet', function(tweet) {
 
-                // console.log(tweet.coordinates);
+                console.log(tweet.coordinates);
+                console.log(tweet.geo);
                 // console.log(tweet);
                 socket.emit('twet', tweet);
             });
 
-
-            socket.on('disconnect', function() {
-                stream.stop();
-                console.log('Desconectado!!!');
-            });
             stream.on('limit', function(limitMessage) {
                 return console.log(limitMessage);
             });
@@ -93,14 +92,18 @@ module.exports = function(io) {
             var total_1 = 0;
             var total_2 = 0;
             var total = 0;
-            var parametro_1 = data.parametro1;
-            var parametro_2 = data.parametro2;
-            var stream = t.stream('statuses/filter', { 'track': [parametro_1, parametro_2] });
+            var parametro_1 = data.parametro1.toLowerCase();
+            var parametro_2 = data.parametro2.toLowerCase();
+            console.log("P1" + parametro_1);
+            console.log("P2" + parametro_2);
+
+            stream = t.stream('statuses/filter', { 'track': [parametro_1, parametro_2] });
             stream.on('tweet', function(tweet) {
 
                 // console.log(tweet);
                 if (tweet.text) {
                     var text = tweet.text.toLowerCase();
+
                     // console.log(text);
                     if (text.indexOf(parametro_1) != -1) {
                         total_1++;
@@ -114,7 +117,7 @@ module.exports = function(io) {
                             media: tweet.user.profile_image_url,
                             track: parametro_1
                         });
-                        socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
+                        socket.emit('lang', { l: tweet.user.lang.substr(0, 2) });
                     } else if (text.indexOf(parametro_2) != -1) {
                         total_2++;
                         total++;
@@ -127,16 +130,9 @@ module.exports = function(io) {
                             media: tweet.user.profile_image_url,
                             track: parametro_2
                         });
-                        socket.emit('lang', {l: tweet.user.lang.substr(0,2)});
+                        socket.emit('lang', { l: tweet.user.lang.substr(0, 2) });
                     } else {
-                        // console.log(tweet.entities.urls.length);
-                        // console.log({
-                        //     corta: tweet.entities.urls[0].url,
-                        //     entera: tweet.entities.urls[0].expanded_url,
-                        //     texto: tweet.entities.urls[0].display_url,
-                        //     indices: tweet.entities.urls[0].indices
-                        // });
-                        
+
                         socket.emit('nulo');
                     }
 
@@ -147,15 +143,10 @@ module.exports = function(io) {
                         track2: total_2
                     });
 
-                    
+
                 }
             });
 
-
-            socket.on('disconnect', function() {
-                stream.stop();
-                console.log('Desconectado!!!');
-            });
             stream.on('limit', function(limitMessage) {
                 socket.emit('limitacion', { perdidos: limitMessage.limit.track });
                 return console.log(limitMessage);
@@ -170,11 +161,26 @@ module.exports = function(io) {
             });
         });
 
-
-
-
-
+// Desconexiones de los sockets y stream
+        socket.on('parar', function() {
+            stream.stop();
+            delete t;
+            t = new twit(conf);
+            console.log('Desconectado!!!');
+            io.clients(function(error, clients) {
+                if (error) throw error;
+                console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+            });
+        });
+        socket.on('disconnect', function() {
+            console.log('Desconectado del socket!!!');
+            io.clients(function(error, clients) {
+                if (error) throw error;
+                console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+            });
+        });
     });
+
     // io.on('connection', function (socket) {
     //   console.log(conf);
     //   socket.on('NewPlayer', function(data){

@@ -10,22 +10,25 @@ angular.module("analyticApp")
                 template: '<div></div>',
                 link: function(scope, element, attributes) {
                     console.log(element.parent().parent());
-					// element.parent().parent().css({
-					// 	"position": "relative" 
-					// });
+                    // element.parent().parent().css({
+                    //  "position": "relative" 
+                    // });
                     element.css({
-                    	"position": "absolute",
+                        "position": "absolute",
                         "width": "100%",
-                        "min-height": ($(window).height() - 70)+'px',
-                        "z-index":"100",
-                        "left":"0",
-                        "right":"0",
+                        "min-height": ($(window).height() - 70) + 'px',
+                        "z-index": "100",
+                        "left": "0",
+                        "right": "0",
                         "margin": "0 auto"
                     });
 
 
                     L.mapbox.accessToken = 'pk.eyJ1IjoibWFudXRlcG93YSIsImEiOiJjaWxjOWtwNXUwMDY1d25tMjlkNTFxejdrIn0.tWC3IU9UmHKGVXJ-IpXyvQ';
-                    var map = L.mapbox.map(element[0], 'mapbox.streets');
+                    var map = L.mapbox.map(element[0], 'manutepowa.pmla74e3', {
+                        center: [0, 0],
+                        zoom: 2
+                    });
                     scope.callback(map);
                 }
             };
@@ -33,38 +36,71 @@ angular.module("analyticApp")
     ])
     .controller("mapaCrtl", function($scope, mySocket) {
         $scope.geoson = [];
-
+        $scope.estructura = "";
 
 
         $scope.detener = function() {
-            mySocket.emit('disconnect');
-            mySocket.disconnect();
+            mySocket.emit('parar');
+            // mySocket.parar();
         }
 
 
 
         $scope.callback = function(map) {
-            map.setView([0, 0], 2);
+            // map.setView([0, 0], 2);
             // console.log(map);
             // L.mapbox.featureLayer($scope.geoson).addTo(map);
 
             $scope.emitir = function() {
                 console.log($scope.text);
-                mySocket.emit('startMapa');
+                mySocket.emit('startMapa', { 'parametro': $scope.text });
 
 
                 mySocket.on('twet', function(data) {
 
                     if (data.coordinates !== null) {
+                        $scope.estructura = `<div>
+                                                <h3 class="text-center"><strong>${data.user.screen_name}</strong></h3>
+                                                <div class="text-center">
+                                                    <img src="${data.user.profile_image_url.replace("normal", "bigger")}" alt="${data.user.screen_name}" class="img-circle">
+                                                </div>
+                                                <div class="text-center"><span style="color:#2B333D">${data.text}</span></div>
+                                                <div class="text-center">
+                                                    <a href="https://twitter.com/${data.user.screen_name}/status/${data.id_str}" class="btn" target="_blank">Ver en Twitter</a>
+                                                    <a href="http://maps.google.com/maps?q=&layer=c&cbll=${data.coordinates.coordinates[1]},${data.coordinates.coordinates[0]}&cbp=11,0,0,0,5" class="btn" target="_blank">Ver en Google</a>
+                                                </div>
+                                            </div>`
+
+
 
                         L.marker([data.coordinates.coordinates[1], data.coordinates.coordinates[0]], {
-                        	title: data.user.screen_name,
+                         title: data.user.screen_name,
                             icon: L.mapbox.marker.icon({
                                 'marker-size': 'small',
                                 'marker-symbol': 'water',
-                                'marker-color': '#000'
+                                'marker-color': '#2B333D'
                             })
-                        }).addTo(map);
+                        }).bindPopup($scope.estructura).addTo(map);
+
+                        // L.mapbox.featureLayer({
+                        //     type: 'Feature',
+                        //     geometry: {
+                        //         type: 'Point',
+                        //         coordinates: [
+                        //             data.coordinates.coordinates[0],
+                        //             data.coordinates.coordinates[1]
+                        //         ]
+                        //     },
+                        //     properties: {
+                        //         title: data.user.screen_name,
+                        //         description: data.text,
+                        //         // one can customize markers by adding simplestyle properties
+                        //         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+                        //         'marker-size': 'small',
+                        //         'marker-color': '#FCC',
+                        //         'marker-symbol': 'water'
+                        //     }
+                        // }).addTo(map);
                     }
 
 
