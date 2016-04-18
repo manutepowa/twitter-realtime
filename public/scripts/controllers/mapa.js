@@ -38,7 +38,10 @@ angular.module("analyticApp")
         $scope.geoson = [];
         $scope.estructura = "";
 
-
+         //debug
+        mySocket.on('debug',function(dataDebug){
+            $scope.debug = dataDebug;
+        });
         $scope.detener = function() {
             mySocket.emit('parar');
             // mySocket.parar();
@@ -52,6 +55,7 @@ angular.module("analyticApp")
             // L.mapbox.featureLayer($scope.geoson).addTo(map);
 
             $scope.emitir = function() {
+                mySocket.emit('inicializar');
                 console.log($scope.text);
                 mySocket.emit('startMapa', { 'parametro': $scope.text });
 

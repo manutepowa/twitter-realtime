@@ -6,43 +6,73 @@ var conf = require('../config/configTwitter');
 module.exports = function(io) {
     var clientes = [];
     var online = 0;
+    var opciones = {};
+    var t;
     var stream;
     // var currentTwitStream = null;
     io.on('connection', function(socket) {
-        var t = new twit(conf);
+        
+        // var stream = t.stream('statuses/filter', opciones);
 
-        clientes.push(socket.id);
-        console.log('Cliente conectado!');
+
+        // clientes.push(socket.id);
+        socket.once('inicializar',function(){
+            //Inicializo el TWIT
+            console.log('Inicializando....');
+            t = new twit(conf);
+        });
         /**
          * Start Stream
          */
         socket.on('startStream', function(data) {
-            console.log(socket.id);
             var topHashtag = [];
+            opciones.track = data.parametro;
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
-            stream = t.stream('statuses/filter', { 'track': data.parametro });
+            stream = t.stream('statuses/filter', opciones);
             stream.on('tweet', function(tweet) {
                 socket.emit('twet', tweet);
+
                 if (tweet.entities.hashtags.length != 0) {
                     topHashtag = require('./functions/getHashtagTweet')(tweet.entities.hashtags, topHashtag);
                     socket.emit('streamHashTag', topHashtag);
                 }
             });
 
+            stream.on('connect', function(request) {
+                console.log('!!Conectando');
+            });
+            stream.on('connected', function(response) {
+                console.log('Conectado!!!!  SocketID:' + socket.id);
+                if (response) console.log('twit connected status code : ' + response.statusCode);
+            });
+            stream.on('reconnect', function(request, response, connectInterval) {
+                console.log('twit reconnect');
+                if (response) console.log('twit response status code : ' + response.statusCode);
+                console.log('twit connectInterval : ' + connectInterval);
+            });
+            stream.on('direct_message', function(directMsg) {
+                console.log(directMsg);
+            })
             stream.on('limit', function(limitMessage) {
-                return console.log(limitMessage);
+                console.log(limitMessage);
             });
 
             stream.on('scrub_geo', function(scrubGeoMessage) {
-                return console.log(scrubGeoMessage);
+                console.log(scrubGeoMessage);
             });
 
+            stream.on('error', function(err) {
+                console.log('======================ERR=========================');
+                console.log(err);
+            });
             stream.on('warning', function(warning) {
-                return console.log(warning);
+                console.log('======================Warning=========================');
+                console.log(warning);
             });
 
             stream.on('disconnect', function(disconnectMessage) {
-                return console.log(disconnectMessage);
+                console.log('======================disconnect=========================');
+                console.log(disconnectMessage);
             });
         });
 
@@ -161,23 +191,20 @@ module.exports = function(io) {
             });
         });
 
-// Desconexiones de los sockets y stream
+        // Desconexiones de los sockets y stream
         socket.on('parar', function() {
+
             stream.stop();
-            delete t;
-            t = new twit(conf);
+            // socket.emit('debug', stream);
+            // console.log(socket);
             console.log('Desconectado!!!');
-            io.clients(function(error, clients) {
-                if (error) throw error;
-                console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
-            });
+            // io.clients(function(error, clients) {
+            //     if (error) throw error;
+            //     console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+            // });
         });
         socket.on('disconnect', function() {
             console.log('Desconectado del socket!!!');
-            io.clients(function(error, clients) {
-                if (error) throw error;
-                console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
-            });
         });
     });
 

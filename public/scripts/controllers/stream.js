@@ -20,7 +20,12 @@ angular.module("analyticApp")
         $scope.data = [];
         $scope.media = [];
 
+        //debug
+        mySocket.on('debug',function(dataDebug){
+            $scope.debug = dataDebug;
+        });
         $scope.emitir = function() {
+            mySocket.emit('inicializar');
             mySocket.emit('startStream', { 'parametro': $scope.text });
 
 

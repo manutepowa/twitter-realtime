@@ -13,7 +13,11 @@ angular.module("analyticApp")
         $scope.idiomas = [];
         $scope.follow = [];
         $scope.friend = [];
-
+ //debug
+        mySocket.on('debug',function(dataDebug){
+            $scope.debug = dataDebug;
+        });
+        
         $scope.lang = {
             "de": "alemán",
             "am": "amárico",
@@ -120,6 +124,7 @@ angular.module("analyticApp")
          */
 
         $scope.emitir = function() {
+            mySocket.emit('inicializar');
             $scope.data.labels[0] = $scope.text1;
             $scope.data.labels[1] = $scope.text2;
             // $scope.tweet.labels[0] = $scope.text1;
