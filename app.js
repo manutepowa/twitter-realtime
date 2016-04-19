@@ -14,7 +14,7 @@ var users = require('./routes/users');
 /**
  * Conexion con la BBDD
  */
-require('./models/user');
+require('./models/user'); 
 
 var app = express();
 
