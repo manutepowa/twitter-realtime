@@ -11,7 +11,7 @@ module.exports = function(io) {
     var stream;
     // var currentTwitStream = null;
     io.on('connection', function(socket) {
-        
+        console.log('connecto de nuevo');
         // var stream = t.stream('statuses/filter', opciones);
 
 
@@ -29,6 +29,7 @@ module.exports = function(io) {
             opciones.track = data.parametro;
             // var stream = t.stream('statuses/filter', { 'track': data.parametro, 'language':'es'});
             stream = t.stream('statuses/filter', opciones);
+
             stream.on('tweet', function(tweet) {
                 socket.emit('twet', tweet);
 
@@ -194,7 +195,10 @@ module.exports = function(io) {
         // Desconexiones de los sockets y stream
         socket.on('parar', function() {
 
+            // stream.stop();
             stream.stop();
+            opciones.track = 'samsung';
+            stream.start();
             // socket.emit('debug', stream);
             // console.log(socket);
             console.log('Desconectado!!!');
@@ -223,5 +227,5 @@ module.exports = function(io) {
     //     online = online - 1;
     //     console.log('Desconectado');
     //   });
-    // 
+    //
 }

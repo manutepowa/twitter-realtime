@@ -12,7 +12,7 @@ angular.module("analyticApp", [
     //     return mySocket;
     // })
     .factory('mySocket', function($rootScope) {
-        var socket = io.connect();
+        var socket = io.connect({reconnection: false,forceNew: true});
         return {
             on: function(eventName, callback) {
                 socket.on(eventName, function() {

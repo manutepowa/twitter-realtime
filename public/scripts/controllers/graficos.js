@@ -17,7 +17,7 @@ angular.module("analyticApp")
         mySocket.on('debug',function(dataDebug){
             $scope.debug = dataDebug;
         });
-        
+
         $scope.lang = {
             "de": "alemán",
             "am": "amárico",
@@ -195,7 +195,7 @@ angular.module("analyticApp")
                     if (value.idioma === $scope.lang[lang.l]) {
                         $scope.existe = true;
                         $scope.idiomas[key].cont++
-                        $scope.idiomas[key].porcentaje = ($scope.idiomas[key].cont / $scope.totalIdioma) * 100; 
+                        $scope.idiomas[key].porcentaje = ($scope.idiomas[key].cont / $scope.totalIdioma) * 100;
                         // console.log($scope.idiomas);
                     }
                 });

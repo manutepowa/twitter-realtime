@@ -57,10 +57,10 @@ angular.module("analyticApp")
                     });
                 }
 
-                    $scope.media.push({
-                        foto: tweet.entities.media[0].media_url+':thumb',
-                        url: tweet.entities.media[0].display_url
-                    }); 
+                $scope.media.push({
+                    foto: tweet.entities.media[0].media_url+':thumb',
+                    url: tweet.entities.media[0].display_url
+                });
             });
         }
         $scope.openModal = function(id) {
@@ -113,5 +113,5 @@ angular.module("analyticApp")
                 "transition": 'all 0.2s ease'
             });
         });
-        
+
     });
