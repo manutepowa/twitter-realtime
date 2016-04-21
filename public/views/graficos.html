@@ -1,104 +1,104 @@
 <h3>{{mensaje}}</h3>
 <hr>
 <div class="col-lg-12 col-md-12">
-    <div class="col-lg-3 col-md-3">
-        <br>
-        <br>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Tracks a buscar</h3>
-            </div>
-            <div class="panel-body">
-                <form ng-submit="emitir()">
-                    <div class="form-group">
-                        <input type="text" ng-model="text1" placeholder="Parámetro 1 (apple)" class="form-control" required>
-                        <input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required>
-                        <br>
-                        <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
-                        <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-md-6">
-        <h4 class="text-center">Tracks</h4>
-        <canvas id="bar" class="chart chart-bar" chart-colours="data.colours" chart-data="data.data" chart-labels="data.labels" chart-options="data.opt"></canvas>
-    </div>
-    <div class="col-lg-3 col-md-3">
-        <br>
-        <br>
-        <ul class="list-group">
-            <li class="list-group-item myInfo" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
-                <span class="badge">{{cantidad}}</span> <strong>Total</strong>
-            </li>
-            <li class="list-group-item myWarning" data-toggle="tooltip" data-placement="left" title="No contienen track">
-                <span class="badge">{{nulos}}</span> <strong>Nulos</strong>
-            </li>
-            <li class="list-group-item myDanger" data-toggle="tooltip" data-placement="left" title="No recibidos por la red">
-                <span class="badge">{{perdidos}}</span> <strong>Perdidos</strong>
-            </li>
-        </ul>
-        <ul class="list-group myBordered" ng-hide="cantidad === 0">
-            <li class="list-group-item colorTrack1">
-                <span class="badge">{{track1}}</span> <strong>{{text1}}</strong>
-            </li>
-            <li class="list-group-item colorTrack2">
-                <span class="badge">{{track2}}</span> <strong>{{text2}}</strong>
-            </li>
-        </ul>
-    </div>
+	<div class="col-lg-3 col-md-3">
+		<br>
+		<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tracks a buscar</h3>
+			</div>
+			<div class="panel-body">
+				<form ng-submit="emitir()">
+					<div class="form-group">
+						<input type="text" ng-model="text1" placeholder="Parámetro 1 (apple)" class="form-control" required>
+						<input type="text" ng-model="text2" placeholder="Parámetro 2 (samsung)" class="form-control" required>
+						<br>
+						<button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+						<a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6">
+		<h4 class="text-center">Tracks</h4>
+		<canvas id="bar" class="chart chart-bar" chart-colours="data.colours" chart-data="data.data" chart-labels="data.labels" chart-options="data.opt"></canvas>
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<br>
+		<br>
+		<ul class="list-group">
+			<li class="list-group-item myInfo" data-toggle="tooltip" data-placement="left" title="Tweets total recibidos">
+				<span class="badge">{{cantidad}}</span> <strong>Total</strong>
+			</li>
+			<li class="list-group-item myWarning" data-toggle="tooltip" data-placement="left" title="No contienen track">
+				<span class="badge">{{nulos}}</span> <strong>Nulos</strong>
+			</li>
+			<li class="list-group-item myDanger" data-toggle="tooltip" data-placement="left" title="No recibidos por la red">
+				<span class="badge">{{perdidos}}</span> <strong>Perdidos</strong>
+			</li>
+		</ul>
+		<ul class="list-group myBordered" ng-hide="cantidad === 0">
+			<li class="list-group-item colorTrack1">
+				<span class="badge">{{track1}}</span> <strong>{{text1}}</strong>
+			</li>
+			<li class="list-group-item colorTrack2">
+				<span class="badge">{{track2}}</span> <strong>{{text2}}</strong>
+			</li>
+		</ul>
+	</div>
 </div>
 <div class="col-lg-12 col-md-12">
-    <div class="row">
-        <div class="col-lg-4 col-md-4">
-            <div class="panel">
-                <div class="panel-heading text-center"><strong>Top 5: Followers</strong></div>
-                <div class="panel-body">
-                    <div class="jumbotron" ng-show="cantidad === 0">
-                        <h4>En este box se visualizará el top5 de usuarios con mas followers del total de los recibidos</h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
-                            <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4">
-            <div class="panel">
-                <div class="panel-heading text-center"><strong>Top 5: Friends</strong></div>
-                <div class="panel-body">
-                	<div class="jumbotron" ng-show="cantidad === 0">
-                        <h4>En este box se visualizará el top5 de usuarios con mas friends del total de los recibidos</h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
-                            <span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-4">
-            <div class="panel panelZ">
-                <div class="panel-heading text-center"><strong>Top 5: Lenguajes</strong></div>
-                <div class="panel-body">
-                	<div class="jumbotron" ng-show="cantidad === 0">
-                        <h4>En este box se visualizará el top5 del idioma mas hablado total de los recibidos</h4>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="l in idiomas | orderBy: '-porcentaje'| limitTo:5">
-                            <strong>{{l.idioma}}</strong>
-                            <span class="barP"><span class="barP2" ng-style="{ 'width' : l.porcentaje + '%'}"></span></span>
-                            <span class="badge">{{l.porcentaje | number:0}} %</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-4 col-md-4">
+			<div class="panel">
+				<div class="panel-heading text-center"><strong>Top 5: Followers</strong></div>
+				<div class="panel-body">
+					<div class="jumbotron" ng-show="cantidad === 0">
+						<h4>En este box se visualizará el top5 de usuarios con mas followers del total de los recibidos</h4>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
+							<span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4">
+			<div class="panel">
+				<div class="panel-heading text-center"><strong>Top 5: Friends</strong></div>
+				<div class="panel-body">
+					<div class="jumbotron" ng-show="cantidad === 0">
+						<h4>En este box se visualizará el top5 de usuarios con mas friends del total de los recibidos</h4>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
+							<span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4">
+			<div class="panel panelZ">
+				<div class="panel-heading text-center"><strong>Top 5: Lenguajes</strong></div>
+				<div class="panel-body">
+					<div class="jumbotron" ng-show="cantidad === 0">
+						<h4>En este box se visualizará el top5 del idioma mas hablado total de los recibidos</h4>
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item" ng-repeat="l in idiomas | orderBy: '-porcentaje'| limitTo:5">
+							<strong>{{l.idioma}}</strong>
+							<span class="barP"><span class="barP2" ng-style="{ 'width' : l.porcentaje + '%'}"></span></span>
+							<span class="badge">{{l.porcentaje | number:0}} %</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- <div class="col-lg-12 col-md-12">
     <div class="row">
