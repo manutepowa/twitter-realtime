@@ -12,8 +12,12 @@ angular.module("analyticApp", [
     //     return mySocket;
     // })
     .factory('mySocket', function($rootScope) {
-        var socket = io.connect({reconnection: false,forceNew: true});
+        var socket = io.connect({forceNew: true});
         return {
+            iniciar: function(){
+                    var socket = io.connect();
+                    // console.log(socket.connected);
+            },
             on: function(eventName, callback) {
                 socket.on(eventName, function() {
                     var args = arguments;
@@ -32,13 +36,9 @@ angular.module("analyticApp", [
                     });
                 })
             },
-            iniciar: function(){
-                    socket = io.connect();
-                    console.log(socket.connected);
-            },
             parar: function(){
-
                 socket.disconnect();
+                socket = io.connect({forceNew: true});
             }
         };
     })

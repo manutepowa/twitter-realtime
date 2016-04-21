@@ -213,10 +213,9 @@ angular.module("analyticApp")
         /**
          * Detener el Socket
          */
-        $scope.detener = function() {
-            mySocket.emit('parar');
-            // mySocket.parar();
-        }
+         $scope.detener = function() {
+             mySocket.parar();
+         }
 
 
         mySocket.on('nulo', function() {

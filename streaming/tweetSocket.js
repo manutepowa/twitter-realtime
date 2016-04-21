@@ -44,6 +44,10 @@ module.exports = function(io) {
             });
             stream.on('connected', function(response) {
                 console.log('Conectado!!!!  SocketID:' + socket.id);
+                io.clients(function(error, clients) {
+                    if (error) throw error;
+                    console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+                });
                 if (response) console.log('twit connected status code : ' + response.statusCode);
             });
             stream.on('reconnect', function(request, response, connectInterval) {
@@ -193,23 +197,27 @@ module.exports = function(io) {
         });
 
         // Desconexiones de los sockets y stream
-        socket.on('parar', function() {
-
-            // stream.stop();
-            stream.stop();
-            opciones.track = 'samsung';
-            stream.start();
-            // socket.emit('debug', stream);
-            // console.log(socket);
-            console.log('Desconectado!!!');
-            // io.clients(function(error, clients) {
-            //     if (error) throw error;
-            //     console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
-            // });
-        });
         socket.on('disconnect', function() {
+            stream.stop();
+            io.clients(function(error, clients) {
+                if (error) throw error;
+                console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+            });
             console.log('Desconectado del socket!!!');
         });
+
+
+        // socket.on('parar', function() {
+        //     stream.stop();
+        //     // socket.emit('debug', stream);
+        //     // console.log(socket);
+        //     console.log('Desconectado!!!');
+        //     io.clients(function(error, clients) {
+        //         if (error) throw error;
+        //         console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
+        //     });
+        // });
+
     });
 
     // io.on('connection', function (socket) {

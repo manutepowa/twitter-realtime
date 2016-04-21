@@ -17,14 +17,19 @@ angular.module("analyticApp")
     })
     .controller("streamCrtl", function($scope, mySocket, moreInfo) {
         $scope.bienvenida = "Stream";
-        $scope.data = [];
-        $scope.media = [];
 
         //debug
         mySocket.on('debug',function(dataDebug){
             $scope.debug = dataDebug;
         });
         $scope.emitir = function() {
+            $scope.data = [];
+            $scope.media = [];
+            $scope.moreInf;
+            $scope.imageInfo;
+            $scope.topHashtag = [];
+
+            
             mySocket.emit('inicializar');
             mySocket.emit('startStream', { 'parametro': $scope.text });
 
@@ -76,8 +81,7 @@ angular.module("analyticApp")
         });
 
         $scope.detener = function() {
-            mySocket.emit('parar');
-            // mySocket.parar();
+            mySocket.parar();
         }
 
 
