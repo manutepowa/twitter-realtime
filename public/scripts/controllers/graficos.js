@@ -1,22 +1,15 @@
 angular.module("analyticApp")
-	.controller("graficosCrtl", function ($scope, mySocket)
-	{
+	.controller("graficosCrtl", function ($scope, mySocket, comprobarConexion) {
 		$scope.mensaje = "Comparacion de tracks";
 		$scope.cantidad = 0;
 		$scope.nulos = 0;
 		$scope.perdidos = 0;
-		$scope.track1 = 0;
-		$scope.track2 = 0;
 		/**
 		 * [idiomas description]
 		 */
-		$scope.totalIdioma = 0;
-		$scope.idiomas = [];
-		$scope.follow = [];
-		$scope.friend = [];
+
 		//debug
-		mySocket.on('debug', function (dataDebug)
-		{
+		mySocket.on('debug', function (dataDebug) {
 			$scope.debug = dataDebug;
 		});
 
@@ -83,34 +76,15 @@ angular.module("analyticApp")
 			"ug": "uigur"
 		};
 
-		// $scope.tweet = {
-		//     "data": [0, 1],
-		//     "labels": ["Vacio", "Vacio"],
-		//     "colours": [{ // default
-		//         "fillColor": "rgba(207,100,103,1)"
-		//     }],
-		//     "opt": {
-		//         segmentShowStroke: true,
-		//         segmentStrokeColor: "#2B333D",
-		//         segmentStrokeWidth: 1,
-		//         percentageInnerCutout: 30, // This is 0 for Pie charts
-		//         animationSteps: 20,
-		//         animationEasing: "easeInOutQuad",
-		//         animateRotate: true,
-		//         animateScale: true
-		//     }
-		// };
 		$scope.data = {
 			"data": [
 				[0, 0]
 			],
 			"labels": ["Track 1", "Track 2"],
-			"colours": [
-			{ // default
+			"colours": [{ // default
 				"fillColor": "#2B333D"
 			}],
-			"opt":
-			{
+			"opt": {
 				scaleShowVerticalLines: true,
 				//Boolean - If there is a stroke on each bar
 				barShowStroke: false,
@@ -127,24 +101,31 @@ angular.module("analyticApp")
 		 * Inicio emitir startGraficos
 		 */
 
-		$scope.emitir = function ()
-		{
+		$scope.emitir = function () {
+			$scope.cantidad = 0;
+			$scope.nulos = 0;
+			$scope.perdidos = 0;
+			$scope.track1 = 0;
+			$scope.track2 = 0;
+			$scope.totalIdioma = 0;
+			$scope.idiomas = [];
+			$scope.follow = [];
+			$scope.friend = [];
 			mySocket.emit('inicializar');
 			$scope.data.labels[0] = $scope.text1;
 			$scope.data.labels[1] = $scope.text2;
+			comprobarConexion.set(true);
 			// $scope.tweet.labels[0] = $scope.text1;
 			// $scope.tweet.labels[1] = $scope.text2;
 
 
-			mySocket.emit('startGraficos',
-			{
+			mySocket.emit('startGraficos', {
 				'parametro1': $scope.text1,
 				'parametro2': $scope.text2
 			});
 
 
-			mySocket.on('porcentajes', function (data)
-			{
+			mySocket.on('porcentajes', function (data) {
 				// console.log(data);
 				//ChartBar
 				$scope.data.data[0][0] = data.p1;
@@ -154,21 +135,17 @@ angular.module("analyticApp")
 				$scope.cantidad = $scope.track1 + $scope.track2;
 			});
 
-			mySocket.on('extraLine', function (data)
-			{
-				console.log(data.media);
-				if (data.track == $scope.text1.toLowerCase())
-				{
-					$scope.follow.push(
-					{
+			mySocket.on('extraLine', function (data) {
+
+				if (data.track == $scope.text1.toLowerCase()) {
+					$scope.follow.push({
 						media: data.media,
 						name: data.name,
 						data: data.follow,
 						class: 'colorTrack1'
 					});
 
-					$scope.friend.push(
-					{
+					$scope.friend.push({
 						media: data.media,
 						name: data.name,
 						data: data.friend,
@@ -176,18 +153,14 @@ angular.module("analyticApp")
 					});
 
 					// $scope.tweet.data[0] += data.tweets;
-				}
-				else
-				{
-					$scope.follow.push(
-					{
+				} else {
+					$scope.follow.push({
 						media: data.media,
 						name: data.name,
 						data: data.follow,
 						class: 'colorTrack2'
 					});
-					$scope.friend.push(
-					{
+					$scope.friend.push({
 						media: data.media,
 						name: data.name,
 						data: data.friend,
@@ -197,8 +170,7 @@ angular.module("analyticApp")
 				}
 			});
 			//Mostrar Lenguajes mas hablados
-			mySocket.on("lang", function (lang)
-			{
+			mySocket.on("lang", function (lang) {
 				$scope.totalIdioma++;
 
 
@@ -206,11 +178,9 @@ angular.module("analyticApp")
 
 				$scope.existe = false;
 				$scope.width = '69%';
-				angular.forEach($scope.idiomas, function (value, key)
-				{
+				angular.forEach($scope.idiomas, function (value, key) {
 					// console.log($scope.idiomas);
-					if (value.idioma === $scope.lang[lang.l])
-					{
+					if (value.idioma === $scope.lang[lang.l]) {
 						$scope.existe = true;
 						$scope.idiomas[key].cont++
 							$scope.idiomas[key].porcentaje = ($scope.idiomas[key].cont / $scope.totalIdioma) * 100;
@@ -218,13 +188,11 @@ angular.module("analyticApp")
 					}
 				});
 
-				if (!$scope.existe)
-				{
-					$scope.idiomas.push(
-					{
+				if (!$scope.existe) {
+					$scope.idiomas.push({
 						idioma: $scope.lang[lang.l],
 						cont: 0,
-						porcentaje: 0
+						porcentaje: 1
 					});
 				}
 			});
@@ -233,19 +201,21 @@ angular.module("analyticApp")
 		/**
 		 * Detener el Socket
 		 */
-		$scope.detener = function ()
-		{
+		$scope.detener = function () {
+			comprobarConexion.set(false);
 			mySocket.parar();
+		}
+		if (comprobarConexion.comprobar()) {
+
+			$scope.detener();
 		}
 
 
-		mySocket.on('nulo', function ()
-		{
+		mySocket.on('nulo', function () {
 			$scope.nulos++;
 		});
 
-		mySocket.on('limitacion', function (data)
-		{
+		mySocket.on('limitacion', function (data) {
 			$scope.perdidos += data.perdidos;
 		});
 

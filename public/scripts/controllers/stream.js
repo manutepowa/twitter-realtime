@@ -1,18 +1,13 @@
 angular.module("analyticApp")
-	.factory("moreInfo", function ()
-	{
+	.factory("moreInfo", function () {
 
 		var allInfo = {};
 
-		allInfo.getMoreInfo = function (datos, id)
-		{
-			for (var i = 0; i <= datos.length - 1; i++)
-			{
+		allInfo.getMoreInfo = function (datos, id) {
+			for (var i = 0; i <= datos.length - 1; i++) {
 				// console.log("hola");
-				if (datos[i].id_str === id)
-				{
+				if (datos[i].id_str === id) {
 					allInfo.info = datos[i];
-
 					break;
 				}
 			}
@@ -21,40 +16,36 @@ angular.module("analyticApp")
 
 		return allInfo;
 	})
-	.controller("streamCrtl", function ($scope, mySocket, moreInfo)
-	{
+	.controller("streamCrtl", function ($scope, mySocket, moreInfo, comprobarConexion, $interval) {
 		$scope.bienvenida = "Stream";
-
+		$scope.data = [];
+		$scope.bool = 1;
 		//debug
-		mySocket.on('debug', function (dataDebug)
-		{
+		mySocket.on('debug', function (dataDebug) {
 			$scope.debug = dataDebug;
 		});
-		$scope.emitir = function ()
-		{
+
+		$scope.emitir = function () {
 			$scope.data = [];
 			$scope.media = [];
 			$scope.moreInf;
 			$scope.imageInfo;
 			$scope.topHashtag = [];
-
+			$scope.bool = 0;
+			$scope.initTimer();
+			comprobarConexion.set(true);
 
 			mySocket.emit('inicializar');
-			mySocket.emit('startStream',
-			{
+			mySocket.emit('startStream', {
 				'parametro': $scope.text
 			});
 
-			$scope.res
-			mySocket.on('twet', function (tweet)
-			{
+			mySocket.on('twet', function (tweet) {
 				// console.log(tweet.user.profile_image_url.replace("normal", "bigger"));
 				$scope.realTime = tweet;
 
-				if (tweet.retweeted_status)
-				{
-					$scope.data.push(
-					{
+				if (tweet.retweeted_status) {
+					$scope.data.push({
 						id: tweet.user.screen_name,
 						id_str: tweet.id_str,
 						t: tweet.text,
@@ -64,11 +55,8 @@ angular.module("analyticApp")
 						hashtag: tweet.entities.hashtags,
 						retweeted_status: tweet.retweeted_status.user.screen_name
 					});
-				}
-				else
-				{
-					$scope.data.push(
-					{
+				} else {
+					$scope.data.push({
 						id: tweet.user.screen_name,
 						id_str: tweet.id_str,
 						t: tweet.text,
@@ -80,20 +68,17 @@ angular.module("analyticApp")
 					});
 				}
 
-				$scope.media.push(
-				{
+				$scope.media.push({
 					foto: tweet.entities.media[0].media_url + ':thumb',
 					url: tweet.entities.media[0].display_url
 				});
 			});
 
-			mySocket.on('streamHashTag', function (data)
-			{
+			mySocket.on('streamHashTag', function (data) {
 				$scope.topHashtag = data;
 			});
 		}
-		$scope.openModal = function (id)
-		{
+		$scope.openModal = function (id) {
 			// moreInfo.clean();
 			moreInfo.getMoreInfo($scope.data, id);
 			$scope.moreInf = moreInfo.info;
@@ -102,47 +87,61 @@ angular.module("analyticApp")
 			$('#modalInfoTweet').modal('show');
 		}
 
-
-		$scope.detener = function ()
-		{
+		$scope.detener = function () {
+			comprobarConexion.set(false);
+			$scope.bool = 1;
 			mySocket.parar();
+		}
+		if (comprobarConexion.comprobar()) {
+
+			$scope.detener();
+		}
+
+
+		$scope.initTimer = function () {
+			$scope.contador = 5;
+			$scope.timer = $interval(function () {
+				$scope.contador--;
+				if ($scope.contador == 0) {
+					$scope.detener();
+					$interval.cancel($scope.timer);
+				} else if ($scope.data.length !== 0) {
+					$interval.cancel($scope.timer);
+				}
+			}, 1000);
+
+
 		}
 
 
 
-
-
-
 		$('[data-toggle="tooltip"]').tooltip();
-		$scope.tamHeight = $(document).height() - $("#submitStream").offset().top - 70;
-		$('.minHeigth').css(
-		{
+		$scope.tamHeight = $(window).height() - $("#submitStream").offset().top - 70;
+		$('.minHeigth').css({
 			maxHeight: $scope.tamHeight,
 			marginTop: '15px'
 		});
-
-		$('.topHashtagHeight').css(
-		{
+		$('.maxHeigth').css({
+			minHeight: $scope.tamHeight - 15,
+			marginTop: '15px'
+		});
+		$('.topHashtagHeight').css({
 			// minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
 			height: ($scope.tamHeight / 2) - 8
 		});
-		$('.topHashtagHeight').next().next().css(
-		{
+		$('.topHashtagHeight').next().next().css({
 			// minHeight: ($(document).height() - $("#submitStream").offset().top - 70) / 2,
 			height: ($scope.tamHeight / 2) - 8
 		});
 
-		$('.pCol').css(
-		{
+		$('.pCol').css({
 			"min-height": ($(window).height() - 130) + 'px'
 		});
 		$('.pCol form').addClass('midd');
-		$('.pCol form').on('submit', function ()
-		{
+		$('.pCol form').on('submit', function () {
 			$(this).removeClass('midd');
 			$(this).parent().removeClass('pCol');
-			$(this).parent().css(
-			{
+			$(this).parent().css({
 				"min-height": 0,
 				"transition": 'all 0.2s ease'
 			});

@@ -1,63 +1,58 @@
 angular.module("analyticApp")
-    .directive('mapbox', [
-        function() {
-            return {
-                restrict: 'EA',
-                replace: true,
-                scope: {
-                    callback: "="
-                },
-                template: '<div></div>',
-                link: function(scope, element, attributes) {
-                    console.log(element.parent().parent());
-                    // element.parent().parent().css({
-                    //  "position": "relative"
-                    // });
-                    element.css({
-                        "position": "absolute",
-                        "width": "100%",
-                        "min-height": ($(window).height() - 70) + 'px',
-                        "z-index": "100",
-                        "left": "0",
-                        "right": "0",
-                        "margin": "0 auto"
-                    });
+	.directive('mapbox', [
+		function () {
+			return {
+				restrict: 'EA',
+				replace: true,
+				scope: {
+					callback: "="
+				},
+				template: '<div></div>',
+				link: function (scope, element, attributes) {
+					element.css({
+						"position": "absolute",
+						"width": "100%",
+						"min-height": ($(window).height() - 70) + 'px',
+						"z-index": "100",
+						"left": "0",
+						"right": "0",
+						"margin": "0 auto"
+					});
 
 
-                    L.mapbox.accessToken = 'pk.eyJ1IjoibWFudXRlcG93YSIsImEiOiJjaWxjOWtwNXUwMDY1d25tMjlkNTFxejdrIn0.tWC3IU9UmHKGVXJ-IpXyvQ';
-                    var map = L.mapbox.map(element[0], 'manutepowa.pmla74e3', {
-                        center: [0, 0],
-                        zoom: 2
-                    });
-                    scope.callback(map);
-                }
-            };
-        }
-    ])
-    .controller("mapaCrtl", function($scope, mySocket) {
-        $scope.geoson = [];
-        $scope.estructura = "";
+					L.mapbox.accessToken = 'pk.eyJ1IjoibWFudXRlcG93YSIsImEiOiJjaWxjOWtwNXUwMDY1d25tMjlkNTFxejdrIn0.tWC3IU9UmHKGVXJ-IpXyvQ';
+					var map = L.mapbox.map(element[0], 'manutepowa.pmla74e3', {
+						center: [0, 0],
+						zoom: 2
+					});
+					scope.callback(map);
+				}
+			};
+		}
+	])
+	.controller("mapaCrtl", function ($scope, mySocket, comprobarConexion) {
+		$scope.geoson = [];
+		$scope.estructura = "";
 
-         //debug
-        mySocket.on('debug',function(dataDebug){
-            $scope.debug = dataDebug;
-        });
+		//debug
+		mySocket.on('debug', function (dataDebug) {
+			$scope.debug = dataDebug;
+		});
 
-        $scope.callback = function(map) {
-            // map.setView([0, 0], 2);
-            // console.log(map);
-            // L.mapbox.featureLayer($scope.geoson).addTo(map);
+		$scope.callback = function (map) {
+			// map.setView([0, 0], 2);
+			// console.log(map);
+			// L.mapbox.featureLayer($scope.geoson).addTo(map);
 
-            $scope.emitir = function() {
-                mySocket.emit('inicializar');
-                console.log($scope.text);
-                mySocket.emit('startMapa', { 'parametro': $scope.text });
+			$scope.emitir = function () {
+				mySocket.emit('inicializar');
+				mySocket.emit('startMapa', { 'parametro': $scope.text });
+				comprobarConexion.set(true);
 
+				mySocket.on('twet', function (data) {
 
-                mySocket.on('twet', function(data) {
-
-                    if (data.coordinates !== null) {
-                        $scope.estructura = `<div>
+					if (data.coordinates !== null) {
+						$scope.estructura = `<div>
                                                 <h3 class="text-center"><strong>${data.user.screen_name}</strong></h3>
                                                 <div class="text-center">
                                                     <img src="${data.user.profile_image_url.replace("normal", "bigger")}" alt="${data.user.screen_name}" class="img-circle">
@@ -71,42 +66,27 @@ angular.module("analyticApp")
 
 
 
-                        L.marker([data.coordinates.coordinates[1], data.coordinates.coordinates[0]], {
-                         title: data.user.screen_name,
-                            icon: L.mapbox.marker.icon({
-                                'marker-size': 'small',
-                                'marker-symbol': 'water',
-                                'marker-color': '#2B333D'
-                            })
-                        }).bindPopup($scope.estructura).addTo(map);
-
-                        // L.mapbox.featureLayer({
-                        //     type: 'Feature',
-                        //     geometry: {
-                        //         type: 'Point',
-                        //         coordinates: [
-                        //             data.coordinates.coordinates[0],
-                        //             data.coordinates.coordinates[1]
-                        //         ]
-                        //     },
-                        //     properties: {
-                        //         title: data.user.screen_name,
-                        //         description: data.text,
-                        //         // one can customize markers by adding simplestyle properties
-                        //         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-                        //         'marker-size': 'small',
-                        //         'marker-color': '#FCC',
-                        //         'marker-symbol': 'water'
-                        //     }
-                        // }).addTo(map);
-                    }
+						L.marker([data.coordinates.coordinates[1], data.coordinates.coordinates[0]], {
+							title: data.user.screen_name,
+							icon: L.mapbox.marker.icon({
+								'marker-size': 'small',
+								'marker-symbol': 'water',
+								'marker-color': '#2B333D'
+							})
+						}).bindPopup($scope.estructura).addTo(map);
+					}
 
 
-                });
-            }
-        };
+				});
+			}
+		};
 
-        $scope.detener = function() {
-            mySocket.parar();
-        }
-    });
+		$scope.detener = function () {
+			comprobarConexion.set(false);
+			mySocket.parar();
+		}
+		if (comprobarConexion.comprobar()) {
+			$scope.detener();
+		}
+
+	});

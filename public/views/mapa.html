@@ -1,13 +1,12 @@
 <div class="formMap col-lg-4 panel panel-default">
 	<div class="panel-body">
 		<form ng-submit="emitir()">
-		    <div class="form-group">
-		        <input type="text" ng-model="text" placeholder="Introduce un término" class="form-control">
-		        <button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
-		        <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
-		    </div>
+			<div class="form-group">
+				<input type="text" ng-model="text" placeholder="Introduce un término" class="form-control" required="require">
+				<button type="submit" class="col-lg-5 btn btn-success">Buscar</button>
+				<a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
+			</div>
 		</form>
 	</div>
 </div>
-{{debug}}
 <mapbox callback="callback"></mapbox>

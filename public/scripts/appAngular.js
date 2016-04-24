@@ -11,84 +11,79 @@ angular.module("analyticApp", [
 	//     });
 	//     return mySocket;
 	// })
-	.factory('mySocket', function ($rootScope)
-	{
-		var socket = io.connect(
-		{
-			forceNew: true
+	.factory('comprobarConexion', function () {
+		var data = false;
+		return {
+			comprobar: function () {
+				return data;
+			},
+			set: function (d) {
+				data = d;
+			}
+		};
+	})
+	.factory('mySocket', function ($rootScope) {
+		var socket = io.connect({
+			forceNew: true,
+			reconnection: false
 		});
 		return {
-			iniciar: function ()
-			{
+			iniciar: function () {
 				var socket = io.connect();
 				// console.log(socket.connected);
 			},
-			on: function (eventName, callback)
-			{
-				socket.on(eventName, function ()
-				{
+			on: function (eventName, callback) {
+				socket.on(eventName, function () {
 					var args = arguments;
-					$rootScope.$apply(function ()
-					{
+					$rootScope.$apply(function () {
 						callback.apply(socket, args);
 					});
 				});
 			},
-			emit: function (eventName, data, callback)
-			{
-				socket.emit(eventName, data, function ()
-				{
+			emit: function (eventName, data, callback) {
+				socket.emit(eventName, data, function () {
 					var args = arguments;
-					$rootScope.$apply(function ()
-					{
-						if (callback)
-						{
+					$rootScope.$apply(function () {
+						if (callback) {
 							callback.apply(socket, args);
 						}
 					});
 				})
 			},
-			parar: function ()
-			{
+			parar: function () {
 				socket.disconnect();
-				socket = io.connect(
-				{
-					forceNew: true
+				socket = io.connect({
+					forceNew: true,
+					reconnection: false
 				});
 			}
 		};
 	})
-	.config(function ($stateProvider, $urlRouterProvider, $locationProvider)
-	{
+	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		$urlRouterProvider.otherwise("/inicio");
 		$locationProvider.hashPrefix('!');
 		$stateProvider
-			.state('inicio',
-			{
+			.state('inicio', {
 				url: '/inicio',
 				templateUrl: "/views/home.html",
 				controller: "homeCrtl"
 			})
-			.state('usuarios',
-			{
+			.state('usuarios', {
 				url: '/usuarios',
 				templateUrl: "/views/usuarios.html",
 				controller: "usersCrtl"
 			})
-			.state('stream',
-			{
+			.state('stream', {
 				url: '/stream',
 				templateUrl: "/views/stream.html",
 				controller: "streamCrtl"
 			})
-			.state('mapa',
-			{
+			.state('mapa', {
 				url: '/mapa',
 				templateUrl: "/views/mapa.html",
 				controller: "mapaCrtl"
 			})
-			.state('graficos',
-			{
+			.state('graficos', {
 				url: '/graficos',
 				templateUrl: "/views/graficos.html",
 				controller: "graficosCrtl"
@@ -97,10 +92,8 @@ angular.module("analyticApp", [
 
 
 	})
-	.controller("NavList", function ($scope, $location)
-	{
-		$scope.navClass = function (page)
-		{
+	.controller("NavList", function ($scope, $location) {
+		$scope.navClass = function (page) {
 			var actualPage = $location.path().substring(1) || 'inicio';
 			return page === actualPage ? 'active' : '';
 		};
