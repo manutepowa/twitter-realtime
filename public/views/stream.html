@@ -55,9 +55,9 @@
       <form ng-submit="emitir()" class="col-lg-6 col-lg-offset-3">
         <div class="form-group">
           <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
-          <input type="text" ng-model="text" placeholder="Ojo!! Que se colapsa" class="form-control" required="require">
-          <button id="submitStream" type="submit" class="col-lg-5 btn btn-success">Buscar</button>
-          <a ng-click="detener()" class="btn btn-info col-lg-5 pull-right">Parar</a>
+          <input type="text" ng-model="text" placeholder="Ejemplo: Miguel Hernandez" class="form-control" required="require">
+          <button id="submitStream" type="submit" class="col-lg-5 btn btn-success" ng-disabled="!bool">Buscar</button>
+          <button ng-click="detener()" class="btn btn-info col-lg-5 pull-right" ng-disabled="bool">Parar</button>
         </div>
       </form>
       <!-- {{debug}} -->
@@ -67,13 +67,13 @@
     </div>
   </div>
 </div>
-<div class="col-lg-12 maxHeigth" ng-show="data.length === 0 && bool === 0">
+<div class="col-lg-12 maxHeigth" ng-show="data.length === 0 && text">
   <!-- <div class="col-lg-12 maxHeigth"> -->
   <div id="loader">
     <spam id="loader2">
-      <h4 class="text-center" ng-hide="contador === 0">Buscando... {{contador}}s</h4>
+      <h4 class="text-center" ng-hide="contador === 0"><strong>Buscando... {{contador}}s</strong></h4>
       <!-- Mensaje que no muestra por el bool -->
-      <h4 class="text-center" ng-show="contador === 0">No se han encontrado resultados</h4>
+      <h4 class="text-center" ng-show="contador === 0"><strong>No se han encontrado resultados</strong></h4>
     </spam>
     <div ng-hide="contador === 0">
       <div id="d1"></div>

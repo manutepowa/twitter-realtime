@@ -24,8 +24,7 @@ angular.module("analyticApp", [
 	})
 	.factory('mySocket', function ($rootScope) {
 		var socket = io.connect({
-			forceNew: true,
-			reconnection: false
+			forceNew: true
 		});
 		return {
 			iniciar: function () {
@@ -53,8 +52,7 @@ angular.module("analyticApp", [
 			parar: function () {
 				socket.disconnect();
 				socket = io.connect({
-					forceNew: true,
-					reconnection: false
+					forceNew: true
 				});
 			}
 		};

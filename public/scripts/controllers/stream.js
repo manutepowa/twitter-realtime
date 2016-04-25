@@ -90,10 +90,13 @@ angular.module("analyticApp")
 		$scope.detener = function () {
 			comprobarConexion.set(false);
 			$scope.bool = 1;
+			if (angular.isDefined($scope.timer)) {
+				$scope.contador = 0;
+				$interval.cancel($scope.timer);
+			};
 			mySocket.parar();
 		}
 		if (comprobarConexion.comprobar()) {
-
 			$scope.detener();
 		}
 
@@ -104,7 +107,7 @@ angular.module("analyticApp")
 				$scope.contador--;
 				if ($scope.contador == 0) {
 					$scope.detener();
-					$interval.cancel($scope.timer);
+					// $interval.cancel($scope.timer);
 				} else if ($scope.data.length !== 0) {
 					$interval.cancel($scope.timer);
 				}

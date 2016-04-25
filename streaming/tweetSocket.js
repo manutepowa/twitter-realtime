@@ -40,43 +40,11 @@ module.exports = function (io) {
 				}
 			});
 
-
-			stream.on('connect', function (request) {
-				console.log('!!Conectando');
-			});
-			stream.on('connected', function (response) {
-				console.log('Conectado!!!!  SocketID:' + socket.id);
-				if (response) console.log('twit connected status code : ' + response.statusCode);
-			});
-			stream.on('reconnect', function (request, response, connectInterval) {
-				console.log('twit reconnect');
-				if (response) console.log('twit response status code : ' + response.statusCode);
-				console.log('twit connectInterval : ' + connectInterval);
-			});
-			stream.on('direct_message', function (directMsg) {
-				console.log(directMsg);
-			})
-			stream.on('limit', function (limitMessage) {
-				console.log(limitMessage);
-			});
-
-			stream.on('scrub_geo', function (scrubGeoMessage) {
-				console.log(scrubGeoMessage);
-			});
-
-			stream.on('error', function (err) {
-				console.log('======================ERR=========================');
-				console.log(err);
-			});
-			stream.on('warning', function (warning) {
-				console.log('======================Warning=========================');
-				console.log(warning);
-			});
-
-			stream.on('disconnect', function (disconnectMessage) {
-				console.log('======================disconnect=========================');
-				console.log(disconnectMessage);
-			});
+			/**
+			 * Requerimos los eventos de twitter Stream
+			 * './functions/eventStream'
+			 */
+			require('./functions/eventStream')(stream, socket);
 		});
 
 		/**
@@ -104,21 +72,11 @@ module.exports = function (io) {
 				socket.emit('twet', tweet);
 			});
 
-			stream.on('limit', function (limitMessage) {
-				return console.log(limitMessage);
-			});
-
-			stream.on('scrub_geo', function (scrubGeoMessage) {
-				return console.log(scrubGeoMessage);
-			});
-
-			stream.on('warning', function (warning) {
-				return console.log(warning);
-			});
-
-			stream.on('disconnect', function (disconnectMessage) {
-				return console.log(disconnectMessage);
-			});
+			/**
+			 * Requerimos los eventos de twitter Stream
+			 * './functions/eventStream'
+			 */
+			require('./functions/eventStream')(stream, socket);
 		});
 
 
@@ -209,6 +167,7 @@ module.exports = function (io) {
 		// Desconexiones de los sockets y stream
 		socket.on('disconnect', function () {
 			stream.stop();
+			delete stream;
 			io.clients(function (error, clients) {
 				if (error) throw error;
 				console.log(clients); // => [6em3d4TJP8Et9EMNAAAA, G5p55dHhGgUnLUctAAAB]
