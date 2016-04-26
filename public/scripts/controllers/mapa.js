@@ -33,7 +33,7 @@ angular.module("analyticApp")
 	.controller("mapaCrtl", function ($scope, mySocket, comprobarConexion) {
 		$scope.geoson = [];
 		$scope.estructura = "";
-
+		$scope.bool = 1;
 		//debug
 		mySocket.on('debug', function (dataDebug) {
 			$scope.debug = dataDebug;
@@ -45,6 +45,7 @@ angular.module("analyticApp")
 			// L.mapbox.featureLayer($scope.geoson).addTo(map);
 
 			$scope.emitir = function () {
+				$scope.bool = 0;
 				mySocket.emit('inicializar');
 				mySocket.emit('startMapa', { 'parametro': $scope.text });
 				comprobarConexion.set(true);
@@ -82,6 +83,7 @@ angular.module("analyticApp")
 		};
 
 		$scope.detener = function () {
+			$scope.bool = 1;
 			comprobarConexion.set(false);
 			mySocket.parar();
 		}

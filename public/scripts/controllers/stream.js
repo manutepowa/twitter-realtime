@@ -102,7 +102,7 @@ angular.module("analyticApp")
 
 
 		$scope.initTimer = function () {
-			$scope.contador = 5;
+			$scope.contador = 10;
 			$scope.timer = $interval(function () {
 				$scope.contador--;
 				if ($scope.contador == 0) {

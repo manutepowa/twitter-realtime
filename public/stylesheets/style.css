@@ -393,7 +393,9 @@ input.form-control {
 /**
  * Graficos JS
  */
-
+.topSpace{
+    margin-top: 20px;
+}
 .list-group-item {
     padding: 7px 15px;
     border: 1px solid #ddd;

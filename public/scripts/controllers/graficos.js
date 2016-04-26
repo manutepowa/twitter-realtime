@@ -1,9 +1,9 @@
 angular.module("analyticApp")
-	.controller("graficosCrtl", function ($scope, mySocket, comprobarConexion) {
-		$scope.mensaje = "Comparacion de tracks";
+	.controller("graficosCrtl", function ($scope, mySocket, comprobarConexion, $filter) {
 		$scope.cantidad = 0;
 		$scope.nulos = 0;
 		$scope.perdidos = 0;
+		$scope.bool = 1;
 		/**
 		 * [idiomas description]
 		 */
@@ -102,6 +102,7 @@ angular.module("analyticApp")
 		 */
 
 		$scope.emitir = function () {
+			$scope.bool = 0;
 			$scope.cantidad = 0;
 			$scope.nulos = 0;
 			$scope.perdidos = 0;
@@ -126,11 +127,12 @@ angular.module("analyticApp")
 
 
 			mySocket.on('porcentajes', function (data) {
-				// console.log(data);
+				// console.log(data.p1);
 				//ChartBar
 				$scope.data.data[0][0] = data.p1;
 				$scope.data.data[0][1] = data.p2;
 				$scope.track1 = data.track1;
+
 				$scope.track2 = data.track2;
 				$scope.cantidad = $scope.track1 + $scope.track2;
 			});
@@ -172,10 +174,6 @@ angular.module("analyticApp")
 			//Mostrar Lenguajes mas hablados
 			mySocket.on("lang", function (lang) {
 				$scope.totalIdioma++;
-
-
-
-
 				$scope.existe = false;
 				$scope.width = '69%';
 				angular.forEach($scope.idiomas, function (value, key) {
@@ -202,6 +200,7 @@ angular.module("analyticApp")
 		 * Detener el Socket
 		 */
 		$scope.detener = function () {
+			$scope.bool = 1;
 			comprobarConexion.set(false);
 			mySocket.parar();
 		}
