@@ -423,7 +423,9 @@ input.form-control {
     left: 0;
 }
 
-
+.jumbotron{
+    background: #C5D0DE;
+}
 /*.panelZ .panel-body{
     background: transparent;
     color: #2B333D;
