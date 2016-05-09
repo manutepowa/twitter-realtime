@@ -32,8 +32,9 @@ angular.module("analyticApp")
 	])
 	.controller("mapaCrtl", function ($scope, mySocket, comprobarConexion) {
 		$scope.geoson = [];
-		$scope.estructura = "";
 		$scope.bool = 1;
+		$scope.cuentaTweets = 0;
+		$scope.cuentaTweetsCoord = 0;
 		//debug
 		mySocket.on('debug', function (dataDebug) {
 			$scope.debug = dataDebug;
@@ -45,13 +46,16 @@ angular.module("analyticApp")
 			// L.mapbox.featureLayer($scope.geoson).addTo(map);
 
 			$scope.emitir = function () {
+				$scope.cuentaTweets = 0;
+				$scope.cuentaTweetsCoord = 0;
+				$scope.estructura = "";
 				$scope.bool = 0;
 				mySocket.emit('inicializar');
 				mySocket.emit('startMapa', { 'parametro': $scope.text });
 				comprobarConexion.set(true);
 
 				mySocket.on('twet', function (data) {
-
+					$scope.cuentaTweets++;
 					if (data.coordinates !== null) {
 						$scope.estructura = `<div>
                                                 <h3 class="text-center"><strong>${data.user.screen_name}</strong></h3>
@@ -90,5 +94,17 @@ angular.module("analyticApp")
 		if (comprobarConexion.comprobar()) {
 			$scope.detener();
 		}
+
+
+		$scope.$watch('estructura', function (data) {
+			if (data == "") {
+				console.log('cambiooooooo porque estoy vacio!!!!!');
+			} else if (data !== undefined) {
+				$scope.cuentaTweetsCoord++;
+				console.log('cambiooooooo!!!!!');
+				console.log(data);
+			}
+
+		});
 
 	});
