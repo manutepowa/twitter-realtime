@@ -34,3 +34,23 @@ p {
 .logo {
 	color:#CCC;
 }
+
+a.btn{
+  background: #1AB2E8;
+  color: white;
+  padding: 18px 0px;
+  font-size: 17px;
+  border: 2px solid #1AB2E8;
+}
+a.btn:hover{
+  color:#1AB2E8;
+  background: white;
+  border: 2px solid #1AB2E8;
+  -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+a.btn i{
+  font-size: 19px;
+}
