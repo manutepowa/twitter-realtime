@@ -34,7 +34,7 @@ angular.module("analyticApp")
 			$scope.bool = 0;
 			$scope.initTimer();
 			comprobarConexion.set(true);
-
+			$scope.loader = 1;
 			mySocket.emit('inicializar');
 			mySocket.emit('startStream', {
 				'parametro': $scope.text
