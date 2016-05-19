@@ -66,8 +66,8 @@ module.exports = function (io) {
 			// var stream = t.stream('statuses/sample', { 'delimited': 100 });
 			stream.on('tweet', function (tweet) {
 
-				console.log(tweet.coordinates);
-				console.log(tweet.geo);
+				// console.log(tweet.coordinates);
+				// console.log(tweet.geo);
 				// console.log(tweet);
 				socket.emit('twet', tweet);
 			});
@@ -89,8 +89,7 @@ module.exports = function (io) {
 			var total = 0;
 			var parametro_1 = data.parametro1.toLowerCase();
 			var parametro_2 = data.parametro2.toLowerCase();
-			console.log("P1" + parametro_1);
-			console.log("P2" + parametro_2);
+
 
 			stream = t.stream('statuses/filter', {
 				'track': [parametro_1, parametro_2]
@@ -152,7 +151,7 @@ module.exports = function (io) {
 				socket.emit('limitacion', {
 					perdidos: limitMessage.limit.track
 				});
-				return console.log(limitMessage);
+				// return console.log(limitMessage);
 			});
 
 			stream.on('scrub_geo', function (scrubGeoMessage) {

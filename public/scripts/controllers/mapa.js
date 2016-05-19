@@ -98,11 +98,11 @@ angular.module("analyticApp")
 
 		$scope.$watch('estructura', function (data) {
 			if (data == "") {
-				console.log('cambiooooooo porque estoy vacio!!!!!');
+				// console.log('cambiooooooo porque estoy vacio!!!!!');
 			} else if (data !== undefined) {
 				$scope.cuentaTweetsCoord++;
-				console.log('cambiooooooo!!!!!');
-				console.log(data);
+				// console.log('cambiooooooo!!!!!');
+				// console.log(data);
 			}
 
 		});
