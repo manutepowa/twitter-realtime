@@ -60,7 +60,7 @@
 						<h4>En este box se visualizará el top5 de usuarios con mas followers del total de los recibidos</h4>
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5">
+						<li class="list-group-item {{d.class}}" ng-repeat="d in follow | orderBy: '-data' | limitTo:5 track by d.name">
 							<span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
 						</li>
 					</ul>
@@ -75,7 +75,7 @@
 						<h4>En este box se visualizará el top5 de usuarios con mas friends del total de los recibidos</h4>
 					</div>
 					<ul class="list-group">
-						<li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5">
+						<li class="list-group-item {{d.class}}" ng-repeat="d in friend | orderBy: '-data' | limitTo:5 track by d.name">
 							<span class="badge">{{d.data | number}}</span> <img class="img-circle" ng-src="{{d.media}}" width="25" alt="...">&nbsp;&nbsp;@{{d.name}}
 						</li>
 					</ul>
