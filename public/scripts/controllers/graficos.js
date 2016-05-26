@@ -1,5 +1,5 @@
 angular.module("analyticApp")
-	.controller("graficosCrtl", function ($scope, mySocket, comprobarConexion, $filter) {
+	.controller("graficosCrtl", ['$scope', 'mySocket', 'comprobarConexion', '$filter', function ($scope, mySocket, comprobarConexion, $filter) {
 		$scope.cantidad = 0;
 		$scope.nulos = 0;
 		$scope.perdidos = 0;
@@ -225,4 +225,4 @@ angular.module("analyticApp")
 		$('[data-toggle="tooltip"]').tooltip();
 
 
-	});
+	}]);

@@ -22,7 +22,7 @@ angular.module("analyticApp", [
 			}
 		};
 	})
-	.factory('mySocket', function ($rootScope) {
+	.factory('mySocket', ['$rootScope', function ($rootScope) {
 		var socket = io.connect({
 			forceNew: true
 		});
@@ -56,8 +56,8 @@ angular.module("analyticApp", [
 				});
 			}
 		};
-	})
-	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+	}])
+	.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
 		$urlRouterProvider.otherwise("/inicio");
 		$locationProvider.hashPrefix('!');
 		$stateProvider
@@ -89,10 +89,10 @@ angular.module("analyticApp", [
 
 
 
-	})
-	.controller("NavList", function ($scope, $location) {
+	}])
+	.controller("NavList", ['$scope', '$location', function ($scope, $location) {
 		$scope.navClass = function (page) {
 			var actualPage = $location.path().substring(1) || 'inicio';
 			return page === actualPage ? 'active' : '';
 		};
-	});
+	}]);

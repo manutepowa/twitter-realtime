@@ -16,7 +16,7 @@ angular.module("analyticApp")
 
 		return allInfo;
 	})
-	.controller("streamCrtl", function ($scope, mySocket, moreInfo, comprobarConexion, $interval) {
+	.controller("streamCrtl", ['$scope', 'mySocket', 'moreInfo', 'comprobarConexion', '$interval', function ($scope, mySocket, moreInfo, comprobarConexion, $interval) {
 		$scope.bienvenida = "Stream";
 		$scope.data = [];
 		$scope.bool = 1;
@@ -150,4 +150,4 @@ angular.module("analyticApp")
 			});
 		});
 
-	});
+	}]);

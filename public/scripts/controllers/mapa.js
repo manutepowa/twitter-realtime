@@ -30,7 +30,7 @@ angular.module("analyticApp")
 			};
 		}
 	])
-	.controller("mapaCrtl", function ($scope, mySocket, comprobarConexion) {
+	.controller("mapaCrtl", ['$scope', 'mySocket', 'comprobarConexion', function ($scope, mySocket, comprobarConexion) {
 		$scope.geoson = [];
 		$scope.bool = 1;
 		$scope.cuentaTweets = 0;
@@ -107,4 +107,4 @@ angular.module("analyticApp")
 
 		});
 
-	});
+	}]);
