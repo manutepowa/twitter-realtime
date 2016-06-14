@@ -219,6 +219,16 @@ body {
 .animateStream.ng-enter.ng-enter-active{
  opacity:1;
 }
+.btn.mySuccess{
+    color: #f9f9f9;
+    background-color: #333c47;
+    border-color: #24272d;
+}
+.btn.mySuccess:hover{
+    color: #f9f9f9;
+    background-color: #333c47;
+    border-color: #c5d0de;
+}
 .box {
     padding-top: 4px;
     padding-bottom: 4px;
@@ -368,11 +378,11 @@ input.form-control {
  */
 
 .formMap {
-    background: #333C47;
+    background: #c5d0de;
     position: absolute;
     z-index: 1100;
     right: 0;
-    border: none;
+    border: 2px solid #2b333d;
 }
 
 .formMap .panel-body {

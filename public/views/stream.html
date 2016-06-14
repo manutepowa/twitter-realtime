@@ -25,7 +25,7 @@
               <h4 class="text-center">Url's</h4>
               <ul>
                 <li ng-repeat="url in moreInf.url"><a href="{{url.url}}" target="_blank">{{url.url}}</a></li>
-                <li ng-show="moreInf.url.length === 0">Este Tweet no tiene Hashtags</li>
+                <li ng-show="moreInf.url.length === 0">Este Tweet no tiene Url's</li>
               </ul>
             </div>
             <div class="col-lg-6">
@@ -56,8 +56,8 @@
         <div class="form-group">
           <label for="text">Introduce un término para buscar en streaming (Apple, Samsung ..)</label>
           <input type="text" ng-model="text" placeholder="Ejemplo: Miguel Hernandez" class="form-control" required="require">
-          <button id="submitStream" type="submit" class="col-lg-5 btn btn-success" ng-disabled="!bool">Buscar</button>
-          <button ng-click="detener()" class="btn btn-info col-lg-5 pull-right" ng-disabled="bool">Parar</button>
+          <button id="submitStream" type="submit" class="col-lg-5 btn mySuccess" ng-disabled="!bool">Buscar</button>
+          <button ng-click="detener()" class="btn mySuccess col-lg-5 pull-right" ng-disabled="bool">Parar</button>
         </div>
       </form>
       <!-- {{debug}} -->
