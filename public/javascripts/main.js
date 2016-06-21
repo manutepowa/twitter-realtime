@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 	}
 
-	$(".sidebar-footer").click(function (e) {
+	$(".sidebar-footer,i.fa-bars").click(function (e) {
 		e.preventDefault();
 		// // $("#wrapper").toggleClass("toggled");
 		console.log(getCookie());

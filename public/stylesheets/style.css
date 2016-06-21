@@ -42,6 +42,12 @@ body {
 /**
  * HOMEPAGE
  */
+ i.fa-bars{
+   margin-right: 10px;
+ }
+i.fa-bars:hover{
+  cursor: pointer;
+}
  #title{
      text-align: center;
      color: #333c47;
