@@ -12,23 +12,23 @@
       <br>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="col-lg-2"><img ng-src="{{imageInfo}}" alt="{{moreInf.id}}" class="img-circle"></div>
-            <div class="col-lg-10">{{moreInf.t}}</div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-2 col-md-2 col-sm-2"><img ng-src="{{imageInfo}}" alt="{{moreInf.id}}" class="img-circle"></div>
+            <div class="col-lg-10 col-md-10 col-sm-10">{{moreInf.t}}</div>
           </div>
           <br>
           <br>
           <br>
           <br>
-          <div class="col-lg-12">
-            <div class="col-lg-6">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-6">
               <h4 class="text-center">Url's</h4>
               <ul>
                 <li ng-repeat="url in moreInf.url"><a href="{{url.url}}" target="_blank">{{url.url}}</a></li>
                 <li ng-show="moreInf.url.length === 0">Este Tweet no tiene Url's</li>
               </ul>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
               <h4 class="text-center">Hashtags</h4>
               <ul>
                 <li ng-repeat="hashtag in moreInf.hashtag"><a href="https://twitter.com/hashtag/{{hashtag.text}}" target="_blank">#{{hashtag.text}}</a></li>
@@ -67,7 +67,7 @@
     </div>
   </div>
 </div>
-<div class="col-lg-12 maxHeigth" ng-show="data.length === 0 && text && loader">
+<div class="col-lg-12 col-md-12 maxHeigth" ng-show="data.length === 0 && text && loader">
   <!-- <div class="col-lg-12 maxHeigth"> -->
   <div id="loader">
     <spam id="loader2">
@@ -84,10 +84,10 @@
     </div>
   </div>
 </div>
-<div class="col-lg-8 minHeigth scroll" ng-hide="data.length === 0">
+<div class="col-lg-8 col-md-8 minHeigth scroll" ng-hide="data.length === 0">
   <div class="row">
-    <div class="col-lg-4 animateStream" ng-repeat="d in data track by $index">
-      <div class="col-lg-12 panel panel-default box" ng-click="openModal(d.id_str)">
+    <div class="col-lg-4 col-md-4 animateStream" ng-repeat="d in data track by $index">
+      <div class="col-lg-12 col-md-12 panel panel-default box" ng-click="openModal(d.id_str)">
         <div class="media">
           <div class="media-left">
             <img class="media-object" ng-src="{{d.image}}" alt="...">
@@ -101,9 +101,9 @@
     </div>
   </div>
 </div>
-<div class="col-lg-1 minHeigth" ng-hide="data.length === 0"></div>
-<div class="col-lg-3 minHeigth" ng-hide="data.length === 0">
-  <div class="col-lg-12 topHashtagHeight scroll">
+<div class="col-lg-1 col-md-1 minHeigth" ng-hide="data.length === 0"></div>
+<div class="col-lg-3 col-md-3 minHeigth" ng-hide="data.length === 0">
+  <div class="col-lg-12 col-md-12 topHashtagHeight scroll">
     <div class="row">
       <ul class="list-group">
         <li class="list-group-item streamHashtag" ng-repeat="data in topHashtag | orderBy: '-cantidad'">
@@ -112,10 +112,10 @@
       </ul>
     </div>
   </div>
-  <div class="col-lg-12" style="height: 16px"></div>
-  <div class="col-lg-12 scroll">
+  <div class="col-lg-12 col-md-12" style="height: 16px"></div>
+  <div class="col-lg-12 col-md-12 scroll">
     <div class="row">
-      <div class="col-lg-6 streamMedia" ng-repeat="m in media track by m.url">
+      <div class="col-lg-6 col-md-6 streamMedia" ng-repeat="m in media track by m.url">
         <a ng-href="http://{{m.url}}" target="_blank"><img ng-src="{{m.foto}}" alt="No imagen"></a>
       </div>
     </div>

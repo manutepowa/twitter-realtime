@@ -609,3 +609,14 @@ input.form-control {
         margin-right: 0;
     }
 }
+
+@media(min-width:992px) {
+  .barP{
+    width: 40%;
+  }
+}
+@media(min-width:1200px) {
+  .barP{
+    width: 52%;
+  }
+}
