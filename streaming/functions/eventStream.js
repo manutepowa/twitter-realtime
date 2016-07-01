@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (stream, socket) {
+module.exports.all = function (stream, socket) {
 	stream.on('connect', function (request) {
 		console.log('!!Conectando');
 	});
@@ -15,9 +15,6 @@ module.exports = function (stream, socket) {
 	});
 	stream.on('direct_message', function (directMsg) {
 		console.log(directMsg);
-	})
-	stream.on('limit', function (limitMessage) {
-		console.log(limitMessage);
 	});
 
 	stream.on('scrub_geo', function (scrubGeoMessage) {
@@ -42,4 +39,19 @@ module.exports = function (stream, socket) {
 		console.log('======================user_event=========================');
 		console.log(eventMsg);
 	})
+}
+
+module.exports.startAll = function (stream, socket) {
+	stream.on('limit', function (limitMessage) {
+		console.log(limitMessage);
+	});
+}
+module.exports.startGraficos = function (stream, socket) {
+	stream.on('limit', function (limitMessage) {
+		socket.emit('limitacion', {
+			perdidos: limitMessage.limit.track
+		});
+
+		console.log(limitMessage);
+	});
 }

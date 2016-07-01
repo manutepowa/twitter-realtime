@@ -194,6 +194,14 @@ angular.module("analyticApp")
 					});
 				}
 			});
+			
+			mySocket.on('nulo', function () {
+				$scope.nulos++;
+			});
+
+			mySocket.on('limitacion', function (data) {
+				$scope.perdidos += data.perdidos;
+			});
 		}
 
 		/**
@@ -208,15 +216,6 @@ angular.module("analyticApp")
 
 			$scope.detener();
 		}
-
-
-		mySocket.on('nulo', function () {
-			$scope.nulos++;
-		});
-
-		mySocket.on('limitacion', function (data) {
-			$scope.perdidos += data.perdidos;
-		});
 
 		/**
 		 * Inicializacion de tooltip

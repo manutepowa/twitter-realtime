@@ -44,7 +44,8 @@ module.exports = function (io) {
 			 * Requerimos los eventos de twitter Stream
 			 * './functions/eventStream'
 			 */
-			require('./functions/eventStream')(stream, socket);
+			require('./functions/eventStream').all(stream, socket);
+			require('./functions/eventStream').startAll(stream, socket);
 		});
 
 		/**
@@ -76,7 +77,8 @@ module.exports = function (io) {
 			 * Requerimos los eventos de twitter Stream
 			 * './functions/eventStream'
 			 */
-			require('./functions/eventStream')(stream, socket);
+			require('./functions/eventStream').all(stream, socket);
+			require('./functions/eventStream').startAll(stream, socket);
 		});
 
 
@@ -132,7 +134,6 @@ module.exports = function (io) {
 							l: tweet.user.lang.substr(0, 2)
 						});
 					} else {
-
 						socket.emit('nulo');
 					}
 
@@ -147,20 +148,16 @@ module.exports = function (io) {
 				}
 			});
 
-			stream.on('limit', function (limitMessage) {
-				socket.emit('limitacion', {
-					perdidos: limitMessage.limit.track
-				});
-				// return console.log(limitMessage);
-			});
+			require('./functions/eventStream').all(stream, socket);
+			require('./functions/eventStream').startGraficos(stream, socket);
 
-			stream.on('scrub_geo', function (scrubGeoMessage) {
-				return console.log(scrubGeoMessage);
-			});
-
-			stream.on('warning', function (warning) {
-				return console.log(warning);
-			});
+			// stream.on('scrub_geo', function (scrubGeoMessage) {
+			// 	return console.log(scrubGeoMessage);
+			// });
+			//
+			// stream.on('warning', function (warning) {
+			// 	return console.log(warning);
+			// });
 		});
 
 		// Desconexiones de los sockets y stream
