@@ -1,4 +1,20 @@
 angular.module("analyticApp")
+	.filter('unique', function() {
+		return function(collection, keyname) {
+			var output = [],
+			  keys = [];
+
+
+			angular.forEach(collection, function(item) {
+			  var key = item[keyname];
+			  if (keys.indexOf(key) === -1) {
+				keys.push(key);
+				output.push(item);
+			  }
+			});
+			return output;
+		};
+	})
 	.factory("moreInfo", function () {
 
 		var allInfo = {};
@@ -68,10 +84,12 @@ angular.module("analyticApp")
 					});
 				}
 
-				$scope.media.push({
-					foto: tweet.entities.media[0].media_url + ':thumb',
-					url: tweet.entities.media[0].display_url
-				});
+				if (tweet.entities.media) {
+					$scope.media.push({
+						foto: tweet.entities.media[0].media_url + ':thumb',
+						url: tweet.entities.media[0].display_url
+					});
+				}
 			});
 
 			mySocket.on('streamHashTag', function (data) {

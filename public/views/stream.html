@@ -115,7 +115,7 @@
   <div class="col-lg-12 col-md-12" style="height: 16px"></div>
   <div class="col-lg-12 col-md-12 scroll">
     <div class="row">
-      <div class="col-lg-6 col-md-6 streamMedia" ng-repeat="m in media track by m.url">
+      <div class="col-lg-6 col-md-6 streamMedia" ng-repeat="m in media | unique: 'url'">
         <a ng-href="http://{{m.url}}" target="_blank"><img ng-src="{{m.foto}}" alt="No imagen"></a>
       </div>
     </div>
