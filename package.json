@@ -15,7 +15,8 @@
   ],
   "author": {
     "name": "Manuel Tercero Soria",
-    "email": "manutepowa@gmail.com"
+    "email": "manutepowa@gmail.com",
+    "url": "http://analytic-m3js.rhcloud.com/"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

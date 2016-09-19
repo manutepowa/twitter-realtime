@@ -1,4 +1,4 @@
 module.exports = {
-    user: 'admin',
-    pass: 'Pil1CICrALa7'
+    user: '< user >',
+    pass: '< passWord >'
 }
