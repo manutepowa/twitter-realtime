@@ -1,1 +1,1 @@
-TFG de Manuel Tercero Soria
+Estudio de datos de Twitter en tiempo real.
